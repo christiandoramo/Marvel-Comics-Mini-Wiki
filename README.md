@@ -1,6 +1,6 @@
 <div  align="left">
 
-### Tópicos
+### Sumário
 
 :o: [Contribuidores](#contribuidores)
 
@@ -10,6 +10,8 @@
 
 :o: [Dicas de acesso](#dicas-de-acesso-arrow_forward)
 
+:o: [Link do deploy](#link-do-deploy)
+
 ## Contribuidores
 
 | [<img src="https://avatars.githubusercontent.com/u/116025325?v=4" width=115>](https://github.com/christiandoramo)   |
@@ -17,8 +19,8 @@
 | [Christian Oliveira](https://github.com/christiandoramo)                                                             |                                
 <br>
 
-## Protótipo Figma: 
-link: https://www.figma.com/file/wM0UP7UBtPNJk6sbAH87aw/Marvels-Comics-Mini-Wiki?type=design&node-id=0%3A1&mode=design&t=dVZIT831B0SCwkUC-1
+## Protótipo Figma 
+[Link do figma](https://www.figma.com/file/wM0UP7UBtPNJk6sbAH87aw/Marvels-Comics-Mini-Wiki?type=design&node-id=0%3A1&mode=design&t=dVZIT831B0SCwkUC-1)
 ![Protótipo Figma](./prototipo.png)
 
 <br>
@@ -31,7 +33,7 @@ link: https://www.figma.com/file/wM0UP7UBtPNJk6sbAH87aw/Marvels-Comics-Mini-Wiki
 
 :pushpin: **REQ2** - deve poder fechar qualquer modal
 
-:pushpin: **REQ3** - navegação da page com componente carrosel para home
+:pushpin: **REQ3** - navegação da page com componente carrossel para home
 
 :pushpin: **REQ4** - navegação de page home para page personagem
 
@@ -57,30 +59,30 @@ link: https://www.figma.com/file/wM0UP7UBtPNJk6sbAH87aw/Marvels-Comics-Mini-Wiki
 
 ### Tarefas iniciais do projeto (entrega 1):
 
--   Criar projeto next
--   Criar ambiente virtual e primeiro teste com serviçoes e credenciais
--   criar requisitos e roteiro de atividades até entrega final
--   Criar readme navegavel dividido em requisitos, como rodar/acessar, apresentação, colaboradores, indice, protótipo figma, imagens do projeto,  o passo a passo/cronograma do que fiz - inserir checklist no readme com essas atividades
--   Iniciar protótipofigma simples com rapidez
--   Prototipar page do carrossel
--   Prototipar page do home
--   Prototipar page do pesonagem
--   Prototipar modal de comics
--   Prototipar modal de series
+-   ~~Criar projeto next~~
+-   ~~Criar ambiente virtual e primeiro teste com serviçoes e credenciais~~
+-   ~~Criar requisitos e roteiro de atividades até entrega final~~
+-   ~~Criar readme navegavel dividido em requisitos, como rodar/acessar, apresentação, colaboradores, indice, protótipo figma, imagens do projeto,  o passo a passo/cronograma do que fiz - inserir checklist no readme com essas atividades~~
+-   ~~Iniciar protótipo figma simples~~
+-   ~~Prototipar page do carrossel~~
+-   ~~Prototipar page do home~~
+-   ~~Prototipar page do pesonagem~~
+-   ~~Prototipar modal de comics~~
+-   ~~Prototipar modal de series~~
 
 ### Funcionalidades (entrega 2):
 
 -   Iniciar (funcional sem estilo) page de Home
 -   Iniciar (funcional sem estilo) page do personagem
 -   Iniciar (funcional sem estilo) page da comic
--   Iniciar (funcional sem estilo) componente carrosel
+-   Iniciar (funcional sem estilo) componente carrossel
 
 ### Finalizações (entrega 3):
 
 -   Page de Home Concluída
 -   Page do personagem Concluída
 -   Page da comic Concluída
--   Componente carrosel Concluída
+-   Componente carrossel Concluída
 
 #### Extra (caso houver tempo - entrega 4):
 -   criar favoritar
@@ -101,6 +103,8 @@ Para instalar pacotes - pnpm install
 
 Para rodar o projeto - pnpm run dev
 
+## Link do deploy
+
 ### Sumário
 
 :o: [Contribuidores](#contribuidores)
@@ -110,5 +114,7 @@ Para rodar o projeto - pnpm run dev
 :o: [Requisitos do Projeto](#requisitos-do-projeto)
 
 :o: [Dicas de acesso](#dicas-de-acesso-arrow_forward)
+
+:o: [Link do deploy](#link-do-deploy)
 
 </div>

@@ -1,5 +1,6 @@
 'use client'
 import { getCharacterById, getCharacters } from '@/app/services/characters';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
 const Menu: React.FC = (props: any) => {
@@ -14,17 +15,13 @@ const Menu: React.FC = (props: any) => {
       console.log(char)
     }
   }
-  async function handleShowHeroes() {
-    const chars = await getCharacters()
-    if (chars) {
-      setCharacters(chars)
-      console.log(chars)
-    }
+  const goToHome = () => {
+    const router = useRouter()
+    router.push('/home')
   }
   return (
-    <div className='flex flex-col gap-[20px]'>
-      <button className='w-[100px] bg-white text-black text-bold' onClick={handleShowHeroes}>getCharacters</button>
-      <button className='w-[100px] bg-white text-black text-bold' onClick={handleShowHero}>getCharactersById</button>
+    <div className='flex flex-col m-[30px]'>
+      <button className='w-[100px] bg-white text-black text-bold' onClick={goToHome}>ENTRAR AGORA</button>
     </div>
   );
 };
