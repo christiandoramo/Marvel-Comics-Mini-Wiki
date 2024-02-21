@@ -36,8 +36,7 @@ export const CharactersProvider = ({ children }: { children: React.ReactNode }) 
 
     async function updateCharacters() {
         const newChars = await getCharactersByName(searchTerm)
-        setCharacters(newChars)
-        return newChars
+        if (newChars) setCharacters(newChars)
     }
 
     useEffect(() => {
@@ -47,7 +46,7 @@ export const CharactersProvider = ({ children }: { children: React.ReactNode }) 
     useEffect(() => {
         async function foundInitialChars() {
             const initialChars = await getCharacters()
-            if (initialChars) {
+            if (initialChars !== null) {
                 setCharacters(initialChars)
             }
         }

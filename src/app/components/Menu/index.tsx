@@ -24,10 +24,7 @@ export function Menu() {
                 onKeyDown={async event => {
                     if (event.keyCode === 13) {
                         router.push('/home')
-                        const updated = await rest.updateCharacters()
-                        if (updated) {
-                            console.log('atualizado: ', updated)
-                        }
+                        await rest.updateCharacters()
                     }
                 }}
                 onChange={(e) => rest.setSearchTerm(e.target.value.trim())}

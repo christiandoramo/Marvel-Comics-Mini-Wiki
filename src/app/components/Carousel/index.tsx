@@ -16,6 +16,7 @@ import { getCharactersAdvanced } from '@/services/characters';
 import { CharacterData } from '@/app/interfaces/characters';
 import { Backdrop, makeStyles } from '@material-ui/core';
 import { CharacterCard } from '../CharacterCard';
+import { CharacterPlaceholder } from '@/app/utils/placeholders';
 
 const useStyles = makeStyles((theme) => ({
   backdrop: {
@@ -31,7 +32,7 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 const Carousel: React.FC = () => {
   const [characters, setCharacters] = React.useState<CharacterData[]>([])
   const [actualOffset, setActualOffset] = React.useState<number>(Math.floor(Math.random() * 1000))
-  const limit = 20
+  const limit = 30
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const router = useRouter()
@@ -62,11 +63,16 @@ const Carousel: React.FC = () => {
   };
 
   React.useEffect(() => {
+    handleReloadImages()
+  }, [actualOffset]);
+
+  React.useEffect(() => {
     if (activeStep === limit - 1) {
       setActualOffset((prev) => prev + limit);
+      handleReloadImages()
     }
-    handleReloadImages()
-  }, [activeStep])
+
+  }, [activeStep]);
 
   return (
     <div className='flex flex-col justify-center items-center h-screen space-y-4'>
@@ -78,7 +84,9 @@ const Carousel: React.FC = () => {
           height: '100vh',
           width: '100vw',
           zIndex: -1,
-          backgroundImage: `url(${characters.length > 0 ? `${characters[activeStep].thumbnail.path}.${characters[activeStep].thumbnail.extension}` : ''})`,
+          backgroundImage: `url(${characters.length > 0 ?
+            `${characters[activeStep].thumbnail.path}.${characters[activeStep].thumbnail.extension}` :
+            `${CharacterPlaceholder.thumbnail.path}`})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           filter: 'blur(10px)',
@@ -93,14 +101,15 @@ const Carousel: React.FC = () => {
               onChangeIndex={handleStepChange}
               enableMouseEvents
             >
-              {characters.length > 0 &&
+              {characters?.length > 0 ? (
                 characters.map((char, index) => (
                   <div key={char.id}>
                     {Math.abs(activeStep - index) <= 2 ? (
                       <CharacterCard {...char} />
-                    ) : null}
+                    ) : <CharacterCard {...CharacterPlaceholder} />
+                    }
                   </div>
-                ))}
+                ))) : <CharacterCard {...CharacterPlaceholder} />}
             </AutoPlaySwipeableViews>
             <MobileStepper
               steps={limit}
