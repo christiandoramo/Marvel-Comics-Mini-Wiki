@@ -69,21 +69,23 @@
 - ~~Prototipar page do carrossel~~
 - ~~Prototipar page do home~~
 - ~~Prototipar page do pesonagem~~
-- ~~Prototipar modal de comics~~
-- ~~Prototipar modal de series~~
+- ~~Prototipar modal de comic~~
+- ~~Prototipar modal de serie~~
 
 ### Funcionalidades (entrega 2):
 
 - ~~Deixar funcional (sem estilos) page de Home~~
 - ~~Deixar funcional (sem estilos) page do personagem~~
-- ~~Deixar funcional (sem estilos) page da comic~~
+- ~~Deixar funcional (sem estilos) modal de comic~~
+- ~~Deixar funcional (sem estilos) modal de serie~~
 - ~~Deixar funcional (sem estilos) componente carrossel~~
 
 ### Finalizações (entrega 3):
 
 - Page de Home Concluída (estilizada)
 - Page do personagem Concluída (estilizada)
-- Page da comic Concluída (estilizada)
+- Modal da comic Concluída (estilizada)
+- Modal da serie Concluída (estilizada)
 - Componente carrossel Concluída (estilizada)
 
 #### PLUS Extra (caso houver tempo - entrega 4):
