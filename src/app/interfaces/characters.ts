@@ -33,5 +33,5 @@ export interface CharacterContextData {
     filterSearch: string
     setFilterSearch: Dispatch<SetStateAction<string>>;
     filteredCharacters: CharacterData[];
-    updateCharacters: () => Promise<CharacterData[]>;
+    updateCharacters: () => void;
 }

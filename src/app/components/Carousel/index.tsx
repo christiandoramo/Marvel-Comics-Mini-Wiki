@@ -62,11 +62,16 @@ const Carousel: React.FC = () => {
   };
 
   React.useEffect(() => {
+      handleReloadImages()
+  }, [actualOffset]);
+
+  React.useEffect(() => {
     if (activeStep === limit - 1) {
       setActualOffset((prev) => prev + limit);
+      handleReloadImages()
     }
-    handleReloadImages()
-  }, [activeStep])
+
+  }, [activeStep]);
 
   return (
     <div className='flex flex-col justify-center items-center h-screen space-y-4'>
@@ -93,7 +98,7 @@ const Carousel: React.FC = () => {
               onChangeIndex={handleStepChange}
               enableMouseEvents
             >
-              {characters.length > 0 &&
+              {characters?.length > 0 &&
                 characters.map((char, index) => (
                   <div key={char.id}>
                     {Math.abs(activeStep - index) <= 2 ? (

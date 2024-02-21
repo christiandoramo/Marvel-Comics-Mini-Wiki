@@ -1,9 +1,10 @@
 import React from 'react';
 import { Box } from '@mui/material'
 import { CharacterData } from '@/app/interfaces/characters';
+import Image from 'next/image';
 
 export const CharacterCard: React.FC<CharacterData> = ({ name, thumbnail }) => {
-    return ( 
+    return (
         <Box
             sx={{
                 backgroundColor: 'black',
@@ -17,12 +18,16 @@ export const CharacterCard: React.FC<CharacterData> = ({ name, thumbnail }) => {
                 justifyContent: 'center',
             }}
         >
-            <img
+            <Image
                 src={`${thumbnail.path}.${thumbnail.extension}`}
                 alt={name}
-                className='w-full h-full rounded-lg'
+                className='h-full rounded-lg w-[200px]'
+                layout='responsive'
+                objectFit='contain'
+                width={1000}
+                height={1000}
             />
-            <h2 className='mt-2 text-center font-bold text-white'>{name}</h2>
+            <h2 className='mt-2 text-center font-bold text-white flex-shrink-0'>{name}</h2>
         </Box>
     );
 };

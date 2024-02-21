@@ -14,6 +14,7 @@ import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Image from 'next/image';
 
 
 export default function Character(props: any) {
@@ -69,7 +70,7 @@ export default function Character(props: any) {
             setOpenComic(true);
         }
     }
-    
+
     async function handleShowSerie(resourceURI: string) {
         const serieFound = await getSerieByURI(resourceURI)
         if (serieFound) {
@@ -87,7 +88,7 @@ export default function Character(props: any) {
             }
         }
         foundThisCharacter()
-    }, [])
+    }, [id])
 
     return (
         <div>
@@ -100,10 +101,14 @@ export default function Character(props: any) {
                     {comic &&
                         <div>
                             <div onClick={goToComicDetails}>
-                                <img
+                                <Image
                                     src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
                                     alt={comic.title}
                                     className='w-full p-4'
+                                    layout='responsive'
+                                    objectFit='contain'
+                                    width={1000}
+                                    height={1000}
                                 />
                             </div>
                             <div onClick={goToComicDetails}>
@@ -126,10 +131,14 @@ export default function Character(props: any) {
                     {serie &&
                         <div>
                             <div onClick={goToSerieDetails}>
-                                <img
+                                <Image
                                     className='w-full p-4'
                                     src={`${serie.thumbnail.path}.${serie.thumbnail.extension}`}
                                     alt={serie.title}
+                                    layout='responsive'
+                                    objectFit='contain'
+                                    width={1000}
+                                    height={1000}
                                 />
                             </div>
                             <div onClick={goToSerieDetails}>
@@ -149,9 +158,13 @@ export default function Character(props: any) {
                 {character &&
                     <div>
                         <div>
-                            <img
+                            <Image
                                 src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
                                 alt={character.name}
+                                layout='responsive'
+                                objectFit='contain'
+                                width={1000}
+                                height={1000}
                             /></div>
                         <div>
                             <h1>{character.name}</h1>
