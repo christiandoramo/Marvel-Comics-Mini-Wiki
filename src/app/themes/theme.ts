@@ -1,8 +1,7 @@
 import { Marvel } from 'next/font/google';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-// import StaticDatePicker from '@mui/lab/StaticDatePicker';
 
-const poppins = Marvel({
+const marvel = Marvel({
     weight: ['400', '700'],
     subsets: ['latin'],
 });
@@ -19,7 +18,7 @@ const defaultTheme = createTheme({
         },
     },
     typography: {
-        fontFamily: poppins.style.fontFamily,
+        fontFamily: marvel.style.fontFamily,
     },
     components: {
         MuiCssBaseline: {
