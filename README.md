@@ -86,14 +86,15 @@
 - Page do personagem Concluída (estilizada)
 - Modal da comic Concluída (estilizada)
 - Modal da serie Concluída (estilizada)
-- Componente carrossel Concluída (estilizada)
+- ~~Componente carrossel Concluída (estilizada)~~
 
-#### PLUS Extra (caso houver tempo - entrega 4):
+### EXTRA-PLUS:
 
-- criar funcionalidade de favoritar
-- prototipar page favoritos
-- page favoritos funcional (sem estilos)
-- page favoritos concluída (estilizada)
+- Versão mobile carrossel
+- Versão mobile page de Home
+- Versão mobile Page do personagem
+- Versão mobile Modal da comic
+- Versão mobile Modal da serie
 
 <br>
 

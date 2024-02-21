@@ -1,3 +1,4 @@
+import { OfflineShareTwoTone } from "@mui/icons-material";
 import api from "./api";
 import md5 from 'md5'; // Biblioteca para hash MD5
 
@@ -39,3 +40,16 @@ export async function getCharactersByName(nameStartsWith: string) {
     }
 }
 
+
+
+export async function getCharactersAdvanced({ offset, limit }: { offset?: number, limit?: number }) {
+    try {
+        const params = { ts: timestamp, apikey: publicKey, hash: hash, offset, limit }
+        const response = await api.get(`/characters`,
+            { params });
+        return response.data.data.results;
+    } catch (error) {
+        console.error('Erro ao obter personagens: ', error);
+        return null;
+    }
+}
