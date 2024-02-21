@@ -1,8 +1,9 @@
 import { useRouter } from 'next/navigation';
 import React from 'react';
 export function FavoritesButton() {
+    const router = useRouter()
     function gotoFavorites() {
-        const router = useRouter()
+
         router.push('/favorites')
     }
     return (

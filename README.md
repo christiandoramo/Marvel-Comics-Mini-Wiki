@@ -14,12 +14,14 @@
 
 ## Contribuidores
 
-| [<img src="https://avatars.githubusercontent.com/u/116025325?v=4" width=115>](https://github.com/christiandoramo)   |
-| --------------------------------------------------------------------------------------------------------- |
-| [Christian Oliveira](https://github.com/christiandoramo)                                                             |                                
+| [<img src="https://avatars.githubusercontent.com/u/116025325?v=4" width=115>](https://github.com/christiandoramo) |
+| ----------------------------------------------------------------------------------------------------------------- |
+| [Christian Oliveira](https://github.com/christiandoramo)                                                          |
+
 <br>
 
-## Protótipo Figma 
+## Protótipo Figma
+
 [Link do figma](https://www.figma.com/file/wM0UP7UBtPNJk6sbAH87aw/Marvels-Comics-Mini-Wiki?type=design&node-id=0%3A1&mode=design&t=dVZIT831B0SCwkUC-1)
 ![Protótipo Figma](./prototipo.png)
 
@@ -59,45 +61,52 @@
 
 ### Tarefas iniciais do projeto (entrega 1):
 
--   ~~Criar projeto next~~
--   ~~Criar ambiente virtual e primeiro teste com serviçoes e credenciais~~
--   ~~Criar requisitos e roteiro de atividades até entrega final~~
--   ~~Criar readme navegavel dividido em requisitos, como rodar/acessar, apresentação, colaboradores, indice, protótipo figma, imagens do projeto,  o passo a passo/cronograma do que fiz - inserir checklist no readme com essas atividades~~
--   ~~Iniciar protótipo figma simples~~
--   ~~Prototipar page do carrossel~~
--   ~~Prototipar page do home~~
--   ~~Prototipar page do pesonagem~~
--   ~~Prototipar modal de comics~~
--   ~~Prototipar modal de series~~
+- ~~Criar projeto next~~
+- ~~Criar ambiente virtual e primeiro teste com serviçoes e credenciais~~
+- ~~Criar requisitos e roteiro de atividades até entrega final~~
+- ~~Criar readme navegavel dividido em requisitos, como rodar/acessar, apresentação, colaboradores, indice, protótipo figma, imagens do projeto, o passo a passo/cronograma do que fiz - inserir checklist no readme com essas atividades~~
+- ~~Iniciar protótipo figma simples~~
+- ~~Prototipar page do carrossel~~
+- ~~Prototipar page do home~~
+- ~~Prototipar page do pesonagem~~
+- ~~Prototipar modal de comics~~
+- ~~Prototipar modal de series~~
 
 ### Funcionalidades (entrega 2):
 
--   Iniciar (funcional sem estilo) page de Home
--   Iniciar (funcional sem estilo) page do personagem
--   Iniciar (funcional sem estilo) page da comic
--   Iniciar (funcional sem estilo) componente carrossel
+- ~~Deixar funcional (sem estilos) page de Home~~
+- ~~Deixar funcional (sem estilos) page do personagem~~
+- ~~Deixar funcional (sem estilos) page da comic~~
+- ~~Deixar funcional (sem estilos) componente carrossel~~
 
 ### Finalizações (entrega 3):
 
--   Page de Home Concluída
--   Page do personagem Concluída
--   Page da comic Concluída
--   Componente carrossel Concluída
+- Page de Home Concluída (estilizada)
+- Page do personagem Concluída (estilizada)
+- Page da comic Concluída (estilizada)
+- Componente carrossel Concluída (estilizada)
 
-#### Extra (caso houver tempo - entrega 4):
--   criar favoritar
--   prototipar page favoritos
--   page favoritos funcional (sem estilos)
--   page favoritos concluída
+#### PLUS Extra (caso houver tempo - entrega 4):
+
+- criar funcionalidade de favoritar
+- prototipar page favoritos
+- page favoritos funcional (sem estilos)
+- page favoritos concluída (estilizada)
 
 <br>
 
 ## Dicas de Acesso :arrow_forward:
 
-Usar node com está no .tool-versions (nodejs 18.18.2)
+usar git clone do projeto de preferencia em ambiente linux ou WSL para windows
+
+inserir na raiz do projeto um arquivo chamda .env.local com as mesmas informacoes que o .env.example
+
+pode-se adquirar a chave publica e privada da marvel aqui: https://developer.marvel.com
+
+De preferencia usar a versao do node no .tool-versions na raiz do projeto (nodejs 18.18.2)
 (sugestão usar - gerenciador de versões como asdf ou nvm, e selecionar a versão node acima)
 
-Para instalar pnpm: npm install -g pnpm 
+Para instalar pnpm: npm install -g pnpm
 
 Para instalar pacotes - pnpm install
 
