@@ -8,7 +8,8 @@ const hash = md5(timestamp + privateKey + publicKey);
 
 export async function getCharacters() {
     try {
-        const response = await api.get(`/characters`, { params: { ts: timestamp, apikey: publicKey, hash: hash } });
+        const response = await api.get(`/characters`,
+            { params: { ts: timestamp, apikey: publicKey, hash: hash } });
         return response.data.data.results;
     } catch (error) {
         console.error('Erro ao obter personagens: ', error);
@@ -18,7 +19,8 @@ export async function getCharacters() {
 
 export async function getCharacterById(characterId: number) {
     try {
-        const response = await api.get(`/characters/${characterId}`, { params: { ts: timestamp, apikey: publicKey, hash: hash } });
+        const response = await api.get(`/characters/${characterId}`,
+            { params: { ts: timestamp, apikey: publicKey, hash: hash } });
         return response.data.data.results[0];
     } catch (error) {
         console.error('Erro ao obter personagem: ', error);
@@ -26,4 +28,14 @@ export async function getCharacterById(characterId: number) {
     }
 }
 
+export async function getCharactersByName(nameStartsWith: string) {
+    try {
+        const response = await api.get('/characters',
+            { params: { nameStartsWith, ts: timestamp, apikey: publicKey, hash: hash } });
+        return response.data.data.results;
+    } catch (error) {
+        console.error('Erro ao obter personagens: ', error);
+        return null;
+    }
+}
 
