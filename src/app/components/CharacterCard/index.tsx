@@ -19,11 +19,11 @@ export const CharacterCard: React.FC<CharacterData> = ({ name, thumbnail }) => {
             }}
         >
             <Image
-                src={`${thumbnail.path}.${thumbnail.extension}`}
+                src={thumbnail.extension !== "" ? `${thumbnail.path}.${thumbnail.extension}` : thumbnail.path}
                 alt={name}
-                className='h-full rounded-lg w-[200px]'
+                className='rounded-lg max-w-[200px] h-[90%] justify-center items-center mt-[-1px]'
                 layout='responsive'
-                objectFit='contain'
+                // objectFit='contain'
                 width={1000}
                 height={1000}
             />
