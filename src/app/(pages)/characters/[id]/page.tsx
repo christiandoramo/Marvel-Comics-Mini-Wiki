@@ -1,21 +1,81 @@
 'use client';
 import { Menu } from '@/app/components/Menu';
 import { CharacterData } from '@/app/interfaces/characters';
+import { ComicData } from '@/app/interfaces/comics';
 import { getCharacterById } from '@/services/characters';
+import { getComicByURI } from '@/services/comics';
+import { getSerieByURI } from '@/services/series';
+import { Comic_Neue } from 'next/font/google';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Modal from '@mui/material/Modal';
+import { SerieData } from '@/app/interfaces/series';
+import IconButton from '@mui/material/IconButton';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+
 
 export default function Character(props: any) {
     const { id } = props.params
     const router = useRouter()
     const [character, setCharacter] = useState<CharacterData | null>(null)
+    const [comic, setComic] = useState<ComicData | null>(null)
+    const [serie, setSerie] = useState<SerieData | null>(null)
+    const [openComic, setOpenComic] = useState(false);
+    const [openSerie, setOpenSerie] = useState(false);
 
-    async function handleShowComic(resourceURI: string) {
+    const style = {
+        position: 'absolute' as 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 320,
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 4,
+    };
 
+    const handleOpenCloseComic = () => {
+        setOpenComic((prev) => !prev);
+        if (openComic === true) setComic(null)
+    };
+
+    const handleOpenCloseSerie = () => {
+        setOpenSerie((prev) => !prev);
+        if (openSerie === true) setSerie(null)
+    };
+
+    function goToComicDetails() {
+        comic?.urls.forEach((url) => {
+            if (url.type === "detail") {
+                window.open(url.url, '_blank')
+            }
+        })
+    }
+    function goToSerieDetails() {
+        serie?.urls.forEach((url) => {
+            if (url.type === "detail") {
+                window.open(url.url, '_blank')
+            }
+        })
     }
 
+    async function handleShowComic(resourceURI: string) {
+        const comicFound = await getComicByURI(resourceURI)
+        if (comicFound) {
+            setComic(comicFound)
+            setOpenComic(true);
+        }
+    }
+    
     async function handleShowSerie(resourceURI: string) {
-
+        const serieFound = await getSerieByURI(resourceURI)
+        if (serieFound) {
+            setSerie(serieFound)
+            setOpenSerie(true);
+        }
     }
 
     useEffect(() => {
@@ -32,6 +92,59 @@ export default function Character(props: any) {
     return (
         <div>
             <Menu />
+            <Modal
+                open={openComic}
+                onClose={handleOpenCloseComic}
+            >
+                <Box sx={style}>
+                    {comic &&
+                        <div>
+                            <div onClick={goToComicDetails}>
+                                <img
+                                    src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+                                    alt={comic.title}
+                                    className='w-full p-4'
+                                />
+                            </div>
+                            <div onClick={goToComicDetails}>
+                                <Typography id="modal-modal-title" variant="h6" component="h2">
+                                    {comic.title}
+                                </Typography>
+                                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                                    {comic.description !== "" ? comic.description
+                                        : comic.textObjects[0]?.text}
+                                </Typography>
+                            </div>
+                        </div>}
+                </Box>
+            </Modal>
+            <Modal
+                open={openSerie}
+                onClose={handleOpenCloseSerie}
+            >
+                <Box sx={style}>
+                    {serie &&
+                        <div>
+                            <div onClick={goToSerieDetails}>
+                                <img
+                                    className='w-full p-4'
+                                    src={`${serie.thumbnail.path}.${serie.thumbnail.extension}`}
+                                    alt={serie.title}
+                                />
+                            </div>
+                            <div onClick={goToSerieDetails}>
+                                <Typography id="modal-modal-title" variant="h6" component="h2">
+                                    <h1>{serie.title}</h1>
+                                </Typography>
+                                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                                    <p>{serie.description !== "" ? serie.description
+                                        : serie.textObjects[0]?.text}</p>
+                                </Typography>
+                            </div>
+                        </div>}
+                </Box>
+            </Modal>
+
             <div>
                 {character &&
                     <div>

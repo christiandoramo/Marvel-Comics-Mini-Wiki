@@ -1,8 +1,9 @@
 import { useRouter } from 'next/navigation';
 import React from 'react';
 export function HomeButton() {
+    const router = useRouter()
     function gotoHome() {
-        const router = useRouter()
+
         router.push('/home')
     }
     return (
