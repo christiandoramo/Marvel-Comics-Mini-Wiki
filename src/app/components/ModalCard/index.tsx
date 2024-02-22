@@ -27,7 +27,7 @@ export const ModalCard: React.FC<ModalProps> = ({ open, onClose, data, onClick, 
             <Box sx={{ ...style, maxHeight: '66vh', overflow: 'auto' }}>
                 {data &&
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                        <div onClick={onClick}>
+                        <div className='cursor-pointer' onClick={onClick}>
                             <Image
                                 src={imageLoaded ? imgURL : CharacterPlaceholder.thumbnail.path}
                                 alt={data.title}
