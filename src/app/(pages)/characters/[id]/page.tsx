@@ -79,7 +79,6 @@ export default function Character(props: any) {
         async function foundThisCharacter() {
             const char = await getCharacterById(id)
             if (char) {
-                console.log(char)
                 setCharacter(char)
             }
         }
@@ -106,11 +105,10 @@ export default function Character(props: any) {
                                 <Image
                                     src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
                                     alt={character.name}
-                                    layout='responsive'
-                                    // objectFit='contain'
+                                    style={{ objectFit: 'contain'}}
                                     width={1000}
                                     height={1000}
-                                    className='shadow-lg border-4 border-yellow-300'
+                                    className='responsive shadow-lg border-4 border-yellow-300'
                                 />
                             </div>
 

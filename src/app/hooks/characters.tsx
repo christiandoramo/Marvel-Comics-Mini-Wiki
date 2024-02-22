@@ -13,6 +13,7 @@ export const CharactersProvider = ({ children }: { children: React.ReactNode }) 
     const [filterSearch, setFilterSearch] = useState<string>('Todos')
     const [filteredCharacters, setFilteredCharacters] = useState<CharacterData[]>([]);
 
+
     function filterCharacters() {
         if (filterSearch === filterOptions.ALL) {
             setFilteredCharacters(characters)
@@ -31,8 +32,14 @@ export const CharactersProvider = ({ children }: { children: React.ReactNode }) 
 
     async function updateCharacters() {
         setCharacters([])
-        const newChars = await getCharactersByName(searchTerm)
-        if (newChars) setCharacters(newChars)
+        if (searchTerm === '') {
+            const actualChars = await getCharactersAdvanced({ offset: 0, limit: 30 })
+            if (actualChars) setCharacters(actualChars)
+        } else {
+            const newChars = await getCharactersByName(searchTerm)
+            if (newChars) setCharacters(newChars)
+        }
+
     }
 
     useEffect(() => {
@@ -40,19 +47,24 @@ export const CharactersProvider = ({ children }: { children: React.ReactNode }) 
     }, [filterSearch, characters])
 
     useEffect(() => {
-        async function foundInitialChars() {
-            const initialChars = await getCharactersAdvanced({ offset: Math.floor(Math.random() * 1000), limit: 30 })
-            if (initialChars !== null) {
-                setCharacters(initialChars)
-            }
-        }
-        if (characters.length === 0) {
-            foundInitialChars()
-        }
+        // async function foundInitialChars() {
+        //     const initialChars = await getCharactersAdvanced({ offset: Math.floor(Math.random() * 1000),
+        //      limit: 30 })
+        //     if (initialChars !== null) {
+        //         setCharacters(initialChars)
+        //     }
+        // }
+        // if (characters.length === 0) {
+        //     foundInitialChars()
+        // }
+        updateCharacters()
     }, [])
 
     return (
-        <CharactersContext.Provider value={{ searchTerm, setSearchTerm, filterSearch, setFilterSearch, filteredCharacters, updateCharacters }}>
+        <CharactersContext.Provider value={{
+            searchTerm, setSearchTerm, characters, setCharacters,
+            filterSearch, setFilterSearch, filteredCharacters, updateCharacters
+        }}>
             {children}
         </CharactersContext.Provider>
     );

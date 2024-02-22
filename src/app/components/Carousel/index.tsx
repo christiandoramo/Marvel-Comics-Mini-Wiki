@@ -12,18 +12,9 @@ import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 import { getCharactersAdvanced } from '@/services/characters';
 import { CharacterData } from '@/app/interfaces/characters';
-import { Backdrop, makeStyles } from '@material-ui/core';
 import { CharacterCard } from '../CharacterCard';
 import { CharacterPlaceholder } from '@/app/utils/placeholders';
 
-const useStyles = makeStyles((theme) => ({
-  backdrop: {
-    zIndex: theme.zIndex.drawer + 1,
-    color: '#fff',
-    backgroundColor: 'rgba(0, 0, 0, 0.3)',
-    backdropFilter: 'blur(10px)',
-  },
-}));
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -34,7 +25,6 @@ const Carousel: React.FC = () => {
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const router = useRouter()
-  const classes = useStyles();
 
   const goToHome = () => {
     router.push('/home')
@@ -45,7 +35,6 @@ const Carousel: React.FC = () => {
     if (chars) {
       setCharacters(chars)
     }
-
   }
 
   const handleNext = () => {
@@ -71,100 +60,125 @@ const Carousel: React.FC = () => {
     }
 
   }, [activeStep]);
-
-  return (
-    <div className='flex flex-col justify-center items-center h-screen space-y-4'>
-      <Backdrop className={classes.backdrop} open>
-        <div className="absolute top-0 left-0 h-screen w-screen z-[-1] 
+    {/* <div className="absolute top-0 left-0 h-screen w-screen z-[-1] 
         bg-cover bg-center transition-all duration-100 ease-linear blur-[10px]"
           style={{
             backgroundImage: `url(${characters.length > 0 ?
               `${characters[Math.floor(activeStep)].thumbnail.path}.${characters[activeStep].thumbnail.extension}` :
               `${CharacterPlaceholder.thumbnail.path}`})`,
           }}
-        />
-        <div className='flex flex-col items-center justify-center gap-y-5'>
-          <h1 className='text-4xl font-bold tracking-widest mb-8'>MARVEL COMICS MINI WIKI</h1>
-          <Box sx={{ maxWidth: 200, flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <AutoPlaySwipeableViews
-              axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-              index={activeStep}
-              onChangeIndex={handleStepChange}
-              enableMouseEvents
-            >
-              {characters?.length > 0 ? (
-                characters.map((char, index) => (
-                  <div key={char.id}>
-                    {Math.abs(activeStep - index) <= 2 ? (
-                      <CharacterCard
-                        {...{ ...char, selectable: false }}
-                      />
-                    ) : <CharacterCard
-                      {...{ ...CharacterPlaceholder, selectable: false }}
+        /> */}
+  return (
+    <div className='flex flex-col justify-center items-center  h-screen space-y-4 overflow-hidden'>
+      <AutoPlaySwipeableViews
+        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+        index={activeStep}
+        onChangeIndex={handleStepChange}
+        enableMouseEvents
+        className='bg-cover absolute
+                blur-[10px] z-0 bg-center h-screen  overflow-hidden'
+      >
+        {characters?.length > 0 ? (
+          characters.map((char, index) => (
+            <div key={char.id}>
+              {Math.abs(activeStep - index) <= 2 ? (
+                <img 
+                className=' object-cover 
+                blur-[10px] z-0 w-screen  origin-center object-center'
+                  src={`${char.thumbnail.path}.${char.thumbnail.extension}`} />
+              ) :
+                <img src={`${CharacterPlaceholder.thumbnail.path}`}
+                className=' object-cover origin-center object-center
+                blur-[10px] z-0 w-screen'/>
+              }
+            </div>
+          ))) : <img src={`${CharacterPlaceholder.thumbnail.path}`}
+          className=' object-cover
+          blur-[10px] z-0 w-screen  origin-center object-center'/>
+        }
+      </AutoPlaySwipeableViews>
+      <div className='flex flex-col items-center justify-center gap-y-5'>
+        <h1 className='text-4xl font-bold tracking-widest mb-8'>MARVEL COMICS MINI WIKI</h1>
+        <Box sx={{ maxWidth: 200, flexGrow: 1, alignItems: 'center', justifyContent: 'center' }}>
+          <AutoPlaySwipeableViews
+            axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+            index={activeStep}
+            onChangeIndex={handleStepChange}
+            enableMouseEvents
+          >
+            {characters?.length > 0 ? (
+              characters.map((char, index) => (
+                <div key={char.id}>
+                  {Math.abs(activeStep - index) <= 2 ? (
+                    <CharacterCard
+                      {...{ ...char, selectable: false }}
                     />
-                    }
-                  </div>
-                ))) : <CharacterCard
-                {...{ ...CharacterPlaceholder, selectable: false }}
-              />}
-            </AutoPlaySwipeableViews>
-            <MobileStepper
-              steps={limit}
-              position="static"
-              activeStep={activeStep}
-              sx={{
-                marginTop: '20px',
-                backgroundColor: 'rgb(0,0,0,0.5)',
-                '.MuiMobileStepper-dot': {
-                  display: 'none', // Esconda os pontos aqui
-                },
-                '.MuiMobileStepper-dotActive': {
-                  display: 'none', // Esconda os pontos aqui
-                },
-                borderRadius: '2rem',
-              }}
-              nextButton={
-                <Button
-                  size="small"
-                  onClick={handleNext}
-                  disabled={activeStep === limit - 1}
-                  style={{ color: '#FFD200' }}
-                >
-                  {theme.direction === 'rtl' ? (
-                    <KeyboardArrowLeft />
-                  ) : (
-                    <KeyboardArrowRight />
-                  )}
-                </Button>
-              }
-              backButton={
-                <Button
-                  style={{ color: '#FFD200' }}
-                  size="small"
-                  onClick={handleBack}
-                  disabled={activeStep === 0}>
-                  {theme.direction === 'rtl' ? (
-                    <KeyboardArrowRight />
-                  ) : (
-                    <KeyboardArrowLeft />
-                  )}
-                </Button>
-              }
-            />
-          </Box>
-          <Button
-            variant="outlined" onClick={() => goToHome()}
+                  ) : <CharacterCard
+                    {...{ ...CharacterPlaceholder, selectable: false }}
+                  />
+                  }
+                </div>
+              ))) : <CharacterCard
+              {...{ ...CharacterPlaceholder, selectable: false }}
+            />}
+          </AutoPlaySwipeableViews>
+          <MobileStepper
+            steps={limit}
+            position="static"
+            activeStep={activeStep}
             sx={{
-              bgcolor: 'red',
-              border: '2px solid #000',
-              boxShadow: 24,
-              textAlign: 'center',
-              color: 'white',
-              height: '50px'
+              marginTop: '20px',
+              backgroundColor: 'rgb(0,0,0,0.5)',
+              '.MuiMobileStepper-dot': {
+                display: 'none', // Esconda os pontos aqui
+              },
+              '.MuiMobileStepper-dotActive': {
+                display: 'none', // Esconda os pontos aqui
+              },
+              borderRadius: '2rem',
             }}
-          >ENTRAR AGORA</Button>
-        </div>
-      </Backdrop>
+            nextButton={
+              <Button
+                size="small"
+                onClick={handleNext}
+                disabled={activeStep === limit - 1}
+                style={{ color: '#FFD200' }}
+              >
+                {theme.direction === 'rtl' ? (
+                  <KeyboardArrowLeft />
+                ) : (
+                  <KeyboardArrowRight />
+                )}
+              </Button>
+            }
+            backButton={
+              <Button
+                style={{ color: '#FFD200' }}
+                size="small"
+                onClick={handleBack}
+                disabled={activeStep === 0}>
+                {theme.direction === 'rtl' ? (
+                  <KeyboardArrowRight />
+                ) : (
+                  <KeyboardArrowLeft />
+                )}
+              </Button>
+            }
+          />
+        </Box>
+        <Button
+          variant="outlined" onClick={() => goToHome()}
+          sx={{
+            bgcolor: 'red',
+            border: '2px solid #000',
+            boxShadow: 24,
+            textAlign: 'center',
+            color: 'white',
+            height: '50px'
+          }}
+        >ENTRAR AGORA</Button>
+      </div>
+      {/* </Backdrop> */}
     </div>
   );
 }

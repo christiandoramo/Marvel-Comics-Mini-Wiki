@@ -39,9 +39,9 @@ export const CharacterCard: React.FC<SelectableCharacterData> = ({ name, thumbna
             <Image
                 src={imageLoaded ? imgURL : CharacterPlaceholder.thumbnail.path}
                 alt={name}
-                className='w-[200px] justify-center items-center mt-[-1px]'
-                layout='responsive'
-                objectFit='cover'
+                className='responsive w-[200px] justify-center items-center mt-[-1px]'
+                // layout='responsive'
+                style={{ objectFit: 'cover' }}
                 width={1000}
                 height={1000}
                 onLoad={() => setImageLoaded(true)}
