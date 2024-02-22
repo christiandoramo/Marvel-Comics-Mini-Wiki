@@ -102,7 +102,8 @@ export default function Character(props: any) {
                         <div>
                             <div onClick={goToComicDetails}>
                                 <Image
-                                    src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+                                    src={`${(comic.thumbnail.path).replace("http:", "https")}
+                                    .${comic.thumbnail.extension}`}
                                     alt={comic.title}
                                     className='w-full p-4'
                                     layout='responsive'
@@ -133,7 +134,7 @@ export default function Character(props: any) {
                             <div onClick={goToSerieDetails}>
                                 <Image
                                     className='w-full p-4'
-                                    src={`${serie.thumbnail.path}.${serie.thumbnail.extension}`}
+                                    src={`${(serie.thumbnail.path).replace("http:", "https")}.${serie.thumbnail.extension}`}
                                     alt={serie.title}
                                     layout='responsive'
                                     objectFit='contain'

@@ -1,5 +1,5 @@
 import { Marvel } from 'next/font/google';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
 
 const marvel = Marvel({
     weight: ['400', '700'],

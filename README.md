@@ -8,9 +8,9 @@
 
 :o: [Requisitos de Projeto](#requisitos-do-projeto)
 
-:o: [Dicas de acesso](#dicas-de-acesso-arrow_forward)
-
 :o: [Link do deploy](#link-do-deploy)
+
+:o: [Dicas de acesso](#dicas-de-acesso-arrow_forward)
 
 ## Contribuidores
 
@@ -87,14 +87,22 @@
 - Modal da comic Concluída (estilizada)
 - Modal da serie Concluída (estilizada)
 - ~~Componente carrossel Concluída (estilizada)~~
+- Primeiro Deploy
 
 ### EXTRA-PLUS:
 
+- Recursos de acessibilidade (leitura de tela, tema noturno)
 - Versão mobile carrossel
 - Versão mobile page de Home
 - Versão mobile Page do personagem
 - Versão mobile Modal da comic
 - Versão mobile Modal da serie
+
+<br>
+
+## Link do deploy
+
+https://marvel-comics-mini-wiki.vercel.app/
 
 <br>
 
@@ -115,7 +123,7 @@ Para instalar pacotes - pnpm install
 
 Para rodar o projeto - pnpm run dev
 
-## Link do deploy
+<br>
 
 ### Sumário
 
@@ -125,8 +133,8 @@ Para rodar o projeto - pnpm run dev
 
 :o: [Requisitos do Projeto](#requisitos-do-projeto)
 
-:o: [Dicas de acesso](#dicas-de-acesso-arrow_forward)
-
 :o: [Link do deploy](#link-do-deploy)
+
+:o: [Dicas de acesso](#dicas-de-acesso-arrow_forward)
 
 </div>

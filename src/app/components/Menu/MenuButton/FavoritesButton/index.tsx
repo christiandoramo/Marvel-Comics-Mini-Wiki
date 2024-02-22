@@ -1,4 +1,5 @@
 import { useRouter } from 'next/navigation';
+import { Button } from '@mui/material';
 import React from 'react';
 export function FavoritesButton() {
     const router = useRouter()
@@ -7,8 +8,22 @@ export function FavoritesButton() {
         router.push('/favorites')
     }
     return (
-        < button className="w-[140px] rounded-lg h-[50px] text-black bg-white text-center font-Poppins text-base font-normal" >
-            Favorites
-        </button >
+        <Button
+            onClick={gotoFavorites}
+            variant="outlined"
+            style={{
+                width: 140,
+                height: 50,
+                color: 'black',
+                backgroundColor: 'white',
+                borderColor: 'black',
+                borderRadius: '5rem',
+                borderStyle:'solid',
+                fontSize: 20,
+                fontWeight: 'bold'
+            }}
+        >
+            Home
+        </Button>
     )
 }

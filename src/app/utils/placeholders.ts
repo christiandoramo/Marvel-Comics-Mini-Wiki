@@ -1,14 +1,14 @@
 export const CharacterPlaceholder = {
-    id: 99999,
-    name: "Limite diário da API key inspirado",
-    description: 'Número limite diário de 3000 requisições com a marvel api key inspirou',
+    id: 0,
+    name: "",
+    description: '',
     textObjects: [{ type: "", language: "", text: "" }],
     thumbnail: {
-        path: "/placeholderapikey.png",
+        path: "/placeholder.png",
         extension: "",
     },
     comics: {
-        available: 1,
+        available: 0,
         collectionURI: "",
         items: [{
             resourceURI: "",
@@ -16,7 +16,7 @@ export const CharacterPlaceholder = {
         }]
     },
     series: {
-        available: 1,
+        available: 0,
         collectionURI: "",
         items: [{
             resourceURI: "",

@@ -16,9 +16,9 @@ export default function Home() {
     return (
         <div>
             <Menu />
-            <div>
+            <div className="flex flex-wrap gap-14 pt-[150px] px-16 mb-[100px]">
                 {rest.filteredCharacters.length === 0 ? (
-                    <p>Nenhum personagem encontrado</p>
+                    <p className='text-black opacity-40 text-center w-full'>Carregando...</p>
                 ) : (
                     rest.filteredCharacters.map((char, index) => (
                         <div
@@ -26,7 +26,7 @@ export default function Home() {
                             onClick={() => handleGoToCharacter(char.id)}
                             key={index}
                         >
-                            <CharacterCard {...char} /> {/* Use o componente CharacterCard aqui */}
+                            <CharacterCard {...char} />
                         </div>
                     ))
                 )}
