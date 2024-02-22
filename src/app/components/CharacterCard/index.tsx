@@ -8,7 +8,6 @@ export const CharacterCard: React.FC<CharacterData> = ({ name, thumbnail }) => {
         <Box
             sx={{
                 backgroundColor: 'black',
-                borderRadius: '1rem',
                 boxShadow: '0 0 -20px rgba(0, 0, 0, 0.8)',
                 width: 200,
                 height: 300,
@@ -16,18 +15,30 @@ export const CharacterCard: React.FC<CharacterData> = ({ name, thumbnail }) => {
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
+                position: 'relative',
+                borderRadius: '10px',
+                overflow: 'hidden',
+                transition: 'transform 0.3s',
+                '&:hover': {
+                    boxShadow: '0 0 20px rgba(0, 0, 0, 1)',
+                    transform: 'scale(1.1)',
+                },
             }}
         >
             <Image
                 src={thumbnail.extension !== "" ? `${thumbnail.path}.${thumbnail.extension}` : thumbnail.path}
                 alt={name}
-                className='rounded-lg max-w-[200px] h-[90%] justify-center items-center mt-[-1px]'
+                className='w-[200px] justify-center items-center mt-[-1px]'
                 layout='responsive'
-                // objectFit='contain'
+                objectFit='cover'
                 width={1000}
                 height={1000}
             />
-            <h2 className='mt-2 text-center font-bold text-white flex-shrink-0'>{name}</h2>
+            <h2
+                className='mt-2 text-center font-bold text-white flex-shrink-0 z-0 bg-black'
+                style={{ position: 'absolute', bottom: 0, backgroundColor: 'rgba(0, 0, 0, 0.7)' }}>
+                {name}
+            </h2>
         </Box>
     );
 };
