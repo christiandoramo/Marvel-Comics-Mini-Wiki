@@ -26,29 +26,29 @@ export function Menu() {
          px-8 py-5
           bg-black z-10">
             <HomeButton />
-            <SearchBar
-                onClick={async event => {
-                    if (event.button===0) { // clickou com botao esquerdo na lupa
-                        router.push('/home')
-                        rest.updateCharacters()
-                    }
-                }}
-                onKeyDown={async event => { // enter na barra
-                    if (event.keyCode === 13) {
-                        router.push('/home')
-                        rest.updateCharacters()
-                    }
-                }}
-                onChange={(e) => rest.setSearchTerm(e.target.value.trim())}
-                placeholder="Buscar personagem"
-                value={rest.searchTerm}
-            />
-            <FilterSelect
-                options={Object.values(filterOptions)}
-                title='Filtros'
-                value={rest.filterSearch}
-                onChange={handleChangeFilter} />
-            {/* <FavoritesButton /> */}
+                <SearchBar
+                    onClick={async event => {
+                        if (event.button === 0) { // clickou com botao esquerdo na lupa
+                            router.push('/home')
+                            rest.updateCharacters()
+                        }
+                    }}
+                    onKeyDown={async event => { // enter na barra
+                        if (event.keyCode === 13) {
+                            router.push('/home')
+                            rest.updateCharacters()
+                        }
+                    }}
+                    onChange={(e) => rest.setSearchTerm(e.target.value.trim())}
+                    placeholder="Buscar personagem"
+                    value={rest.searchTerm}
+                />
+                <FilterSelect
+                    options={Object.values(filterOptions)}
+                    label={'Filtro'}
+                    value={rest.filterSearch}
+                    onChange={handleChangeFilter} />
+                {/* <FavoritesButton /> */}
         </div>
     )
 }

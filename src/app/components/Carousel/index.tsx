@@ -75,20 +75,13 @@ const Carousel: React.FC = () => {
   return (
     <div className='flex flex-col justify-center items-center h-screen space-y-4'>
       <Backdrop className={classes.backdrop} open>
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          height: '100vh',
-          width: '100vw',
-          zIndex: -1,
-          backgroundImage: `url(${characters.length > 0 ?
-            `${characters[activeStep].thumbnail.path}.${characters[activeStep].thumbnail.extension}` :
-            `${CharacterPlaceholder.thumbnail.path}`})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          filter: 'blur(10px)',
-        }}
+        <div className="absolute top-0 left-0 h-screen w-screen z-[-1] 
+        bg-cover bg-center transition-all duration-100 ease-linear blur-[10px]"
+          style={{
+            backgroundImage: `url(${characters.length > 0 ?
+              `${characters[Math.floor(activeStep)].thumbnail.path}.${characters[activeStep].thumbnail.extension}` :
+              `${CharacterPlaceholder.thumbnail.path}`})`,
+          }}
         />
         <div className='flex flex-col items-center justify-center gap-y-5'>
           <h1 className='text-4xl font-bold tracking-widest mb-8'>MARVEL COMICS MINI WIKI</h1>
@@ -103,11 +96,17 @@ const Carousel: React.FC = () => {
                 characters.map((char, index) => (
                   <div key={char.id}>
                     {Math.abs(activeStep - index) <= 2 ? (
-                      <CharacterCard {...char} />
-                    ) : <CharacterCard {...CharacterPlaceholder} />
+                      <CharacterCard
+                        {...{ ...char, selectable: false }}
+                      />
+                    ) : <CharacterCard
+                      {...{ ...CharacterPlaceholder, selectable: false }}
+                    />
                     }
                   </div>
-                ))) : <CharacterCard {...CharacterPlaceholder} />}
+                ))) : <CharacterCard
+                {...{ ...CharacterPlaceholder, selectable: false }}
+              />}
             </AutoPlaySwipeableViews>
             <MobileStepper
               steps={limit}
