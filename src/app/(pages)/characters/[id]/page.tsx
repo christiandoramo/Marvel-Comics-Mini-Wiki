@@ -122,9 +122,9 @@ export default function Character(props: any) {
                                 <HighlightedText text={`Comics: ${character.comics.available}`} />
                                 <p className='text-black  px-4 mt-4'>
                                     {(character.comics.items.map((item, index) => (
-                                        <span className='text-black'>
+                                        <span key={index}   className='text-black'>
                                             <span className='cursor-pointer
-                                            hover:text-yellow-500' key={index} onClick={() => handleShowSerie(item.resourceURI)}>{item.name}
+                                            hover:text-yellow-500' onClick={() => handleShowSerie(item.resourceURI)}>{item.name}
                                             </span>{index !== character.comics.items.length - 1 ? `, ` : `.`}
                                         </span>
                                     )))}
@@ -134,9 +134,9 @@ export default function Character(props: any) {
                                 <HighlightedText text={`Series: ${character.series.available}`} />
                                 <p className='text-black px-4 mt-4'>
                                     {(character.series.items.map((item, index) => (
-                                        <span className=' text-black'>
+                                        <span key={index}  className=' text-black'>
                                             <span className='cursor-pointer
-                                             hover:text-yellow-500' key={index} onClick={() => handleShowSerie(item.resourceURI)}>{item.name}
+                                             hover:text-yellow-500' onClick={() => handleShowSerie(item.resourceURI)}>{item.name}
                                             </span>{index !== character.series.items.length - 1 ? `, ` : `.`}
                                         </span>
                                     )))}
