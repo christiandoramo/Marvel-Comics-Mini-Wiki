@@ -14,20 +14,15 @@ export const CharactersProvider = ({ children }: { children: React.ReactNode }) 
     const [filteredCharacters, setFilteredCharacters] = useState<CharacterData[]>([]);
 
     function filterCharacters() {
-        console.log('searchTerm: ', searchTerm);
-        console.log("filter: ", filterSearch);
         if (filterSearch === filterOptions.ALL) {
             setFilteredCharacters(characters)
-            console.log(characters)
         }
         else if (filterSearch === filterOptions.COMICS10) {
             const filtered = characters.filter(char => char.comics.available >= 10)
-            console.log(filtered)
             setFilteredCharacters(filtered)
         }
         else if (filterSearch === filterOptions.SERIES10) {
             const filtered = characters.filter(char => char.series.available >= 10)
-            console.log(filtered)
             setFilteredCharacters(filtered)
         } else {
             console.log("Filtro bugou")

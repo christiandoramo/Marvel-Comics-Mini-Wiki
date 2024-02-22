@@ -19,10 +19,7 @@ interface ModalProps {
 }
 
 export const ModalCard: React.FC<ModalProps> = ({ open, onClose, data, onClick, style }) => {
-    const imgURL = `${data.thumbnail.path}.${data.thumbnail.extension}`.replace('http:', 'https:')
-    console.log(imgURL)
-    const imgURL2 = (`${data.thumbnail.path}.${data.thumbnail.extension}`).replace('http:', 'https:')
-    console.log(imgURL2)
+    const imgURL = (`${data.thumbnail.path}.${data.thumbnail.extension}`).replace('http:', 'https:')
     // evitando mixed types http com https erro de seguranca no deploy vercel
     const [imageLoaded, setImageLoaded] = useState(false);
     return (
