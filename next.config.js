@@ -1,8 +1,22 @@
 module.exports = {
   images: {
-    domains: ["i.annihil.us"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "i.annihil.us",
+        port: "",
+        pathname: "/u/prod/marvel/i/mg/**",
+      },
+      {
+        protocol: "http",
+        hostname: "i.annihil.us",
+        port: "",
+        pathname: "/u/prod/marvel/i/mg/**",
+      },
+    ],
   },
 };
+
 /*
 next.config suporta apenas(a partir de 2021):
 domains: Uma lista de domínios externos permitidos para carregar imagens.

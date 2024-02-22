@@ -34,4 +34,6 @@ export interface CharacterContextData {
     setFilterSearch: Dispatch<SetStateAction<string>>;
     filteredCharacters: CharacterData[];
     updateCharacters: () => void;
+    characters: CharacterData[];
+    setCharacters: Dispatch<SetStateAction<CharacterData[]>>;
 }

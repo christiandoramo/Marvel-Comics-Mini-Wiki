@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 
-// Componente de botão
+
 export const HighlightedText = ({ text }: { text: string }) => {
 
     return (

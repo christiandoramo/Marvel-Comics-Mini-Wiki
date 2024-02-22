@@ -31,8 +31,7 @@ export const ModalCard: React.FC<ModalProps> = ({ open, onClose, data, onClick, 
                             <Image
                                 src={imageLoaded ? imgURL : CharacterPlaceholder.thumbnail.path}
                                 alt={data.title}
-                                className='w-full p-4'
-                                layout='responsive'
+                                className='responsive w-full p-4'
                                 width={1000}
                                 height={1000}
                                 onLoad={() => setImageLoaded(true)}

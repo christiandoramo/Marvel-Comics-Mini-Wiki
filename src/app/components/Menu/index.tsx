@@ -11,7 +11,6 @@ export function Menu() {
     const { ...rest } = useCharacters();
     const router = useRouter()
     const handleChangeFilter = (event: any) => {
-        console.log(event.target.value)
         rest.setFilterSearch(event.target.value);
     }
 
@@ -45,7 +44,6 @@ export function Menu() {
                 />
                 <FilterSelect
                     options={Object.values(filterOptions)}
-                    label={'Filtro'}
                     value={rest.filterSearch}
                     onChange={handleChangeFilter} />
                 {/* <FavoritesButton /> */}
