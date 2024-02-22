@@ -7,8 +7,9 @@ const timestamp = new Date().getTime().toString();
 const hash = md5(timestamp + privateKey + publicKey);
 
 export async function getComicByURI(resourceURI: string) {
+    const secureResource = resourceURI.replace("http:", "https")
     try {
-        const response = await axios.get(resourceURI, { params: { ts: timestamp, apikey: publicKey, hash: hash } })
+        const response = await axios.get(secureResource, { params: { ts: timestamp, apikey: publicKey, hash: hash } })
         return response.data.data.results[0];
     } catch (error) {
         console.error('Erro ao obter comic: ', error);
