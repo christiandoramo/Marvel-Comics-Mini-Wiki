@@ -5,17 +5,13 @@ import { ComicData } from '@/app/interfaces/comics';
 import { getCharacterById } from '@/services/characters';
 import { getComicByURI } from '@/services/comics';
 import { getSerieByURI } from '@/services/series';
-import { Comic_Neue } from 'next/font/google';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import Modal from '@mui/material/Modal';
 import { SerieData } from '@/app/interfaces/series';
-import IconButton from '@mui/material/IconButton';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Image from 'next/image';
-
+import { ModalCard } from '@/app/components/ModalCard';
+import { Grid, Link } from '@mui/material';
+import { HighlightedText } from '@/app/components/HighlightedText';
 
 export default function Character(props: any) {
     const { id } = props.params
@@ -91,101 +87,65 @@ export default function Character(props: any) {
     }, [id])
 
     return (
-        <div>
+        <>
             <Menu />
-            <Modal
-                open={openComic}
-                onClose={handleOpenCloseComic}
-            >
-                <Box sx={style}>
-                    {comic &&
-                        <div>
-                            <div onClick={goToComicDetails}>
-                                <Image
-                                    src={`${(comic.thumbnail.path).replace("http:", "https")}
-                                    .${comic.thumbnail.extension}`}
-                                    alt={comic.title}
-                                    className='w-full p-4'
-                                    layout='responsive'
-                                    objectFit='contain'
-                                    width={1000}
-                                    height={1000}
-                                />
-                            </div>
-                            <div onClick={goToComicDetails}>
-                                <Typography id="modal-modal-title" variant="h6" component="h2">
-                                    {comic.title}
-                                </Typography>
-                                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                                    {comic.description !== "" ? comic.description
-                                        : comic.textObjects[0]?.text}
-                                </Typography>
-                            </div>
-                        </div>}
-                </Box>
-            </Modal>
-            <Modal
-                open={openSerie}
-                onClose={handleOpenCloseSerie}
-            >
-                <Box sx={style}>
-                    {serie &&
-                        <div>
-                            <div onClick={goToSerieDetails}>
-                                <Image
-                                    className='w-full p-4'
-                                    src={`${(serie.thumbnail.path).replace("http:", "https")}.${serie.thumbnail.extension}`}
-                                    alt={serie.title}
-                                    layout='responsive'
-                                    objectFit='contain'
-                                    width={1000}
-                                    height={1000}
-                                />
-                            </div>
-                            <div onClick={goToSerieDetails}>
-                                <Typography id="modal-modal-title" variant="h6" component="h2">
-                                    <h1>{serie.title}</h1>
-                                </Typography>
-                                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                                    <p>{serie.description !== "" ? serie.description
-                                        : serie.textObjects[0]?.text}</p>
-                                </Typography>
-                            </div>
-                        </div>}
-                </Box>
-            </Modal>
+            {comic && <ModalCard {...{
+                open: openComic, style, data: comic,
+                onClick: goToComicDetails, onClose: handleOpenCloseComic
+            }} />}
 
-            <div>
+            {serie && <ModalCard {...{
+                open: openSerie, style, data: serie,
+                onClick: goToSerieDetails, onClose: handleOpenCloseSerie
+            }} />}
+            <div style={{ padding: '20px', color: 'black' }}>
                 {character &&
-                    <div>
-                        <div>
-                            <Image
-                                src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-                                alt={character.name}
-                                layout='responsive'
-                                objectFit='contain'
-                                width={1000}
-                                height={1000}
-                            /></div>
-                        <div>
-                            <h1>{character.name}</h1>
-                            <p>{character.description}</p>
-                            <div><span>Comics {character.comics.available}
-                            </span>
-                                {character.comics.items.map((item, index) => (
-                                    <p onClick={() => handleShowComic(item.resourceURI)} key={index}>{item.name}</p>
-                                ))}
+                    <Grid container spacing={2}>
+                        <Grid item xs={6}>
+                            <div className='bg-black h-full w-full'>
+                                <Image
+                                    src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+                                    alt={character.name}
+                                    layout='responsive'
+                                    // objectFit='contain'
+                                    width={1000}
+                                    height={1000}
+                                    className='shadow-lg border-4 border-yellow-300'
+                                />
                             </div>
-                            <div><span>Series
-                                {character.series.available}</span>
-                                {character.series.items.map((item, index) => (
-                                    <p onClick={() => handleShowSerie(item.resourceURI)} key={index}>{item.name}</p>
-                                ))}
+
+                        </Grid>
+                        <Grid item xs={6} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                            <h1 className='text-[32px] text-center mb-16'>{character.name}</h1>
+                            <p>{character.description ? character.description : ''}</p>
+                            <div className='flex flex-col items-center mb-16'>
+                                <HighlightedText text={`Comics: ${character.comics.available}`} />
+                                <p className='text-black  px-4 mt-4'>
+                                    {(character.comics.items.map((item, index) => (
+                                        <span className='text-black'>
+                                            <span className='cursor-pointer
+                                            hover:text-yellow-500' key={index} onClick={() => handleShowSerie(item.resourceURI)}>{item.name}
+                                            </span>{index !== character.comics.items.length - 1 ? `, ` : `.`}
+                                        </span>
+                                    )))}
+                                </p>
                             </div>
-                        </div>
-                    </div>
+                            <div className='flex flex-col items-center'>
+                                <HighlightedText text={`Series: ${character.series.available}`} />
+                                <p className='text-black px-4 mt-4'>
+                                    {(character.series.items.map((item, index) => (
+                                        <span className=' text-black'>
+                                            <span className='cursor-pointer
+                                             hover:text-yellow-500' key={index} onClick={() => handleShowSerie(item.resourceURI)}>{item.name}
+                                            </span>{index !== character.series.items.length - 1 ? `, ` : `.`}
+                                        </span>
+                                    )))}
+                                </p>
+                            </div>
+                        </Grid>
+                    </Grid>
                 }
             </div>
-        </div>
+        </>
     )
 }

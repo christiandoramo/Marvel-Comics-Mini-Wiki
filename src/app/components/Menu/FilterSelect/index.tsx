@@ -5,7 +5,7 @@ import { makeStyles, withTheme } from '@mui/styles';
 import filterOptions from '@/app/utils/filterOptions';
 
 interface FilterSelectProps {
-    title: string;
+    label: string;
     value: string;
     onChange: (event: any) => void;
     options: any[];
@@ -17,7 +17,7 @@ const useStyles = makeStyles({
         borderColor: 'black',
         width: '200px',
         '& .MuiSelect-icon': {
-            color: 'white',
+            color: 'blue',
         },
         '&:focus': {
             outline: 'none',
@@ -31,25 +31,24 @@ const useStyles = makeStyles({
         color: 'black',
         height: '50px',
         borderBottom: '1px solid black',
+        '&:hover': {
+            backgroundColor: 'cyan',
+        },
+        '& .MuiSelect-icon': {
+            color: 'blue',
+        },
+        '&.Mui-selected':{
+            backgroundColor: 'green',
+        }
     },
 });
 
-export const FilterSelect: React.FC<FilterSelectProps> = ({ title, value, onChange, options }) => {
+export const FilterSelect: React.FC<FilterSelectProps> = ({ value, onChange, options,label }) => {
     const classes = useStyles();
 
     return (
         <Select
-            inputProps={{
-                style: {
-                    borderBottom: 'none',
-                    justifyItems: 'center',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    verticalAlign: 'middle',
-                },
-                disableUnderline: true,
-            }}
-            variant="standard"
+            // variant="outlined"
             className="bg-select-background
              text-select-text text-left 
              rounded-[50px] h-[50px] max-w-[200px] 
@@ -59,31 +58,13 @@ export const FilterSelect: React.FC<FilterSelectProps> = ({ title, value, onChan
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={value}
-            label={title}
+            // label={label} // tava bugando o componente
             onChange={onChange}
             defaultValue={filterOptions.ALL}
-            MenuProps={{
-                anchorOrigin: {
-                    vertical: "bottom",
-                    horizontal: "center"
-                },
-                transformOrigin: {
-                    vertical: "top",
-                    horizontal: "center"
-                },
-                disableAutoFocus: true,
-            }}
         >
             {options.map((option, index) => (
                 <MenuItem
                     key={index}
-                    sx={{
-                        '&.Mui-selected': {
-                            backgroundColor: 'white',
-                            height: '50px',
-                            color: 'black',
-                        },
-                    }}
                     className={classes.menuItem}
                     aria-label={option} value={option}>
                     {option}

@@ -82,15 +82,17 @@
 
 ### Finalizações (entrega 3):
 
-- Page de Home Concluída (estilizada)
-- Page do personagem Concluída (estilizada)
-- Modal da comic Concluída (estilizada)
-- Modal da serie Concluída (estilizada)
+- ~~Page de Home Concluída (estilizada)~~
+- ~~Page do personagem Concluída (estilizada)~~
+- ~~Modal da comic Concluída (estilizada)~~
+- ~~Modal da serie Concluída (estilizada)~~
 - ~~Componente carrossel Concluída (estilizada)~~
-- Primeiro Deploy
+- ~~Primeiro Deploy~~
 
 ### EXTRA-PLUS:
 
+- Novas formas de busca
+- Novas formas de Navegação
 - Recursos de acessibilidade (leitura de tela, tema noturno)
 - Versão mobile carrossel
 - Versão mobile page de Home

@@ -55,7 +55,8 @@ export const SearchBar: React.FC<FormInputProps> = ({ placeholder, value, name, 
                             sx={{
                                 color: 'gray',
                                 '&:hover': {
-                                    color: 'orange'
+                                    color: 'orange',
+                                    cursor: 'pointer'
                                 },
                             }}
                         />
