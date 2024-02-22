@@ -43,6 +43,10 @@ export default function Home() {
         handleReloadImages()
     }, [actualOffset]);
 
+    useEffect(() => {
+        rest.filterCharacters()
+    }, [rest.characters]);
+
 
     return (
         <div>

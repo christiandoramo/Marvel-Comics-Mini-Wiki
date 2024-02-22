@@ -34,7 +34,10 @@ const Carousel: React.FC = () => {
   async function handleReloadImages() {
     const chars = await getCharactersAdvanced({ offset: actualOffset, limit })
     if (chars) {
-      setCharacters(chars)
+      const chasFiltred = chars.filter((char: CharacterData) =>
+        !char.thumbnail.path.includes('image_not_available')
+        && !char.thumbnail.path.includes('F4c002e0305708'))//pegando apenas com imagem
+      setCharacters(chasFiltred)
     }
   }
 

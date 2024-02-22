@@ -1,6 +1,6 @@
 'use client';
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import {getCharactersAdvanced, getCharactersByName } from '../../services/characters';
+import { getCharactersAdvanced, getCharactersByName } from '../../services/characters';
 import { CharacterContextData, CharacterData } from '../interfaces/characters';
 import filterOptions from '../utils/filterOptions';
 
@@ -25,7 +25,15 @@ export const CharactersProvider = ({ children }: { children: React.ReactNode }) 
         else if (filterSearch === filterOptions.SERIES10) {
             const filtered = characters.filter(char => char.series.available >= 10)
             setFilteredCharacters(filtered)
-        } else {
+        }
+        else if (filterSearch === filterOptions.COMIMAGEM) {
+            const filtered = characters.filter((char: CharacterData) =>
+                !char.thumbnail.path.includes('image_not_available')
+                && !char.thumbnail.path.includes('F4c002e0305708'))
+            //pegando só com imagens
+            setFilteredCharacters(filtered)
+        }
+        else {
             console.log("Filtro bugou")
         }
     }
@@ -52,7 +60,7 @@ export const CharactersProvider = ({ children }: { children: React.ReactNode }) 
 
     return (
         <CharactersContext.Provider value={{
-            searchTerm, setSearchTerm, characters, setCharacters,
+            searchTerm, setSearchTerm, characters, setCharacters, filterCharacters,
             filterSearch, setFilterSearch, filteredCharacters, updateCharacters
         }}>
             {children}
