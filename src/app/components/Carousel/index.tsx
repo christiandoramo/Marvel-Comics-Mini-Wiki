@@ -14,6 +14,7 @@ import { getCharactersAdvanced } from '@/services/characters';
 import { CharacterData } from '@/app/interfaces/characters';
 import { CharacterCard } from '../CharacterCard';
 import { CharacterPlaceholder } from '@/app/utils/placeholders';
+import Image from 'next/image';
 
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
@@ -58,16 +59,7 @@ const Carousel: React.FC = () => {
       setActualOffset((prev) => prev + limit);
       handleReloadImages()
     }
-
   }, [activeStep]);
-    {/* <div className="absolute top-0 left-0 h-screen w-screen z-[-1] 
-        bg-cover bg-center transition-all duration-100 ease-linear blur-[10px]"
-          style={{
-            backgroundImage: `url(${characters.length > 0 ?
-              `${characters[Math.floor(activeStep)].thumbnail.path}.${characters[activeStep].thumbnail.extension}` :
-              `${CharacterPlaceholder.thumbnail.path}`})`,
-          }}
-        /> */}
   return (
     <div className='flex flex-col justify-center items-center  h-screen space-y-4 overflow-hidden'>
       <AutoPlaySwipeableViews
@@ -82,18 +74,27 @@ const Carousel: React.FC = () => {
           characters.map((char, index) => (
             <div key={char.id}>
               {Math.abs(activeStep - index) <= 2 ? (
-                <img 
-                className=' object-cover 
+                <Image
+                  width={1000}
+                  height={1000}
+                  alt={char.name}
+                  className=' object-cover 
                 blur-[10px] z-0 w-screen  origin-center object-center'
                   src={`${char.thumbnail.path}.${char.thumbnail.extension}`} />
               ) :
-                <img src={`${CharacterPlaceholder.thumbnail.path}`}
-                className=' object-cover origin-center object-center
+                <Image alt={char.name}
+                  width={1000}
+                  height={1000}
+                  src={`${CharacterPlaceholder.thumbnail.path}`}
+                  className=' object-cover origin-center object-center
                 blur-[10px] z-0 w-screen'/>
               }
             </div>
-          ))) : <img src={`${CharacterPlaceholder.thumbnail.path}`}
-          className=' object-cover
+          ))) : <Image alt={CharacterPlaceholder.name}
+            width={1000}
+            height={1000}
+            src={`${CharacterPlaceholder.thumbnail.path}`}
+            className=' object-cover
           blur-[10px] z-0 w-screen  origin-center object-center'/>
         }
       </AutoPlaySwipeableViews>
@@ -130,10 +131,10 @@ const Carousel: React.FC = () => {
               marginTop: '20px',
               backgroundColor: 'rgb(0,0,0,0.5)',
               '.MuiMobileStepper-dot': {
-                display: 'none', // Esconda os pontos aqui
+                display: 'none',
               },
               '.MuiMobileStepper-dotActive': {
-                display: 'none', // Esconda os pontos aqui
+                display: 'none',
               },
               borderRadius: '2rem',
             }}

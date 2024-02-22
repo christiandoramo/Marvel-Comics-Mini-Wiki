@@ -1,4 +1,3 @@
-import { OfflineShareTwoTone } from "@mui/icons-material";
 import api from "./api";
 import md5 from 'md5';
 import axios from "axios";
@@ -8,16 +7,16 @@ const privateKey = process.env.NEXT_PUBLIC_PRIVATE_KEY;
 const timestamp = new Date().getTime().toString();
 const hash = md5(timestamp + privateKey + publicKey);
 
-export async function getCharacters() {
-    try {
-        const response = await api.get(`/characters`,
-            { params: { ts: timestamp, apikey: publicKey, hash: hash } });
-        return response.data.data.results;
-    } catch (error) {
-        console.error('Erro ao obter personagens: ', error);
-        return null;
-    }
-}
+// export async function getCharacters() {
+//     try {
+//         const response = await api.get(`/characters`,
+//             { params: { ts: timestamp, apikey: publicKey, hash: hash } });
+//         return response.data.data.results;
+//     } catch (error) {
+//         console.error('Erro ao obter personagens: ', error);
+//         return null;
+//     }
+// }
 
 export async function getCharacterById(characterId: number) {
     try {

@@ -1,5 +1,5 @@
 import axios from "axios";
-import md5 from 'md5'; // Biblioteca para hash MD5
+import md5 from 'md5'; 
 import api from "./api";
 
 const publicKey = process.env.NEXT_PUBLIC_PUBLIC_KEY;

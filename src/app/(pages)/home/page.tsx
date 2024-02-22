@@ -10,7 +10,6 @@ import { useTheme } from '@mui/material/styles';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import MobileStepper from '@mui/material/MobileStepper';
-import { CharacterData } from '@/app/interfaces/characters';
 
 
 export default function Home() {
@@ -54,12 +53,12 @@ export default function Home() {
                     position="static"
                     sx={{
                         marginTop: '20px',
-                        backgroundColor: 'rgb(0,0,0,0.2)',
+                        backgroundColor: 'rgb(0,0,0,1)',
                         '.MuiMobileStepper-dot': {
-                            display: 'none', // Esconda os pontos aqui
+                            display: 'none',
                         },
                         '.MuiMobileStepper-dotActive': {
-                            display: 'none', // Esconda os pontos aqui
+                            display: 'none',
                         },
                         borderRadius: '2rem',
                     }}
@@ -113,12 +112,12 @@ export default function Home() {
                     position="static"
                     sx={{
                         marginTop: '20px',
-                        backgroundColor: 'rgb(0,0,0,0.2)',
+                        backgroundColor: 'rgb(0,0,0,1)',
                         '.MuiMobileStepper-dot': {
-                            display: 'none', // Esconda os pontos aqui
+                            display: 'none',
                         },
                         '.MuiMobileStepper-dotActive': {
-                            display: 'none', // Esconda os pontos aqui
+                            display: 'none',
                         },
                         borderRadius: '2rem',
                     }}

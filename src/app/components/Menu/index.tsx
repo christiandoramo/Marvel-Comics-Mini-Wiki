@@ -44,7 +44,6 @@ export function Menu() {
                 />
                 <FilterSelect
                     options={Object.values(filterOptions)}
-                    label={'Filtro'}
                     value={rest.filterSearch}
                     onChange={handleChangeFilter} />
                 {/* <FavoritesButton /> */}

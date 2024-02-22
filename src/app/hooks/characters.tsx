@@ -1,6 +1,6 @@
 'use client';
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { getCharacters, getCharactersAdvanced, getCharactersByName } from '../../services/characters';
+import {getCharactersAdvanced, getCharactersByName } from '../../services/characters';
 import { CharacterContextData, CharacterData } from '../interfaces/characters';
 import filterOptions from '../utils/filterOptions';
 
@@ -47,16 +47,6 @@ export const CharactersProvider = ({ children }: { children: React.ReactNode }) 
     }, [filterSearch, characters])
 
     useEffect(() => {
-        // async function foundInitialChars() {
-        //     const initialChars = await getCharactersAdvanced({ offset: Math.floor(Math.random() * 1000),
-        //      limit: 30 })
-        //     if (initialChars !== null) {
-        //         setCharacters(initialChars)
-        //     }
-        // }
-        // if (characters.length === 0) {
-        //     foundInitialChars()
-        // }
         updateCharacters()
     }, [])
 

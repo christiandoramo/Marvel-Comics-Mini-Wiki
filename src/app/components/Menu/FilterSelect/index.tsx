@@ -1,11 +1,10 @@
 import React from 'react';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-import { makeStyles, withTheme } from '@mui/styles';
+import { makeStyles } from '@mui/styles';
 import filterOptions from '@/app/utils/filterOptions';
 
 interface FilterSelectProps {
-    label: string;
     value: string;
     onChange: (event: any) => void;
     options: any[];
@@ -43,7 +42,7 @@ const useStyles = makeStyles({
     },
 });
 
-export const FilterSelect: React.FC<FilterSelectProps> = ({ value, onChange, options,label }) => {
+export const FilterSelect: React.FC<FilterSelectProps> = ({ value, onChange, options }) => {
     const classes = useStyles();
 
     return (

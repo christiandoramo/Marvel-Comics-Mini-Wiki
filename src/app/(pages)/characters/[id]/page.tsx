@@ -5,17 +5,15 @@ import { ComicData } from '@/app/interfaces/comics';
 import { getCharacterById } from '@/services/characters';
 import { getComicByURI } from '@/services/comics';
 import { getSerieByURI } from '@/services/series';
-import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { SerieData } from '@/app/interfaces/series';
 import Image from 'next/image';
 import { ModalCard } from '@/app/components/ModalCard';
-import { Grid, Link } from '@mui/material';
+import { Grid } from '@mui/material';
 import { HighlightedText } from '@/app/components/HighlightedText';
 
 export default function Character(props: any) {
     const { id } = props.params
-    const router = useRouter()
     const [character, setCharacter] = useState<CharacterData | null>(null)
     const [comic, setComic] = useState<ComicData | null>(null)
     const [serie, setSerie] = useState<SerieData | null>(null)
@@ -23,7 +21,7 @@ export default function Character(props: any) {
     const [openSerie, setOpenSerie] = useState(false);
 
     const style = {
-        position: 'absolute' as 'absolute',
+        position: 'absolute',
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
@@ -122,7 +120,7 @@ export default function Character(props: any) {
                                     {(character.comics.items.map((item, index) => (
                                         <span key={index}   className='text-black'>
                                             <span className='cursor-pointer
-                                            hover:text-yellow-500' onClick={() => handleShowSerie(item.resourceURI)}>{item.name}
+                                            hover:text-yellow-500' onClick={() => handleShowComic(item.resourceURI)}>{item.name}
                                             </span>{index !== character.comics.items.length - 1 ? `, ` : `.`}
                                         </span>
                                     )))}
