@@ -1,16 +1,10 @@
 import axios from "axios";
-import md5 from 'md5'; 
-import api from "./api";
 
-const publicKey = process.env.NEXT_PUBLIC_PUBLIC_KEY;
-const privateKey = process.env.NEXT_PUBLIC_PRIVATE_KEY;
-const timestamp = new Date().getTime().toString();
-const hash = md5(timestamp + privateKey + publicKey);
-
+import api,{axiosConfig} from "./api";
 export async function getEventByURI(resourceURI: string) {
-    const secureResource = resourceURI.replace("http:","https:")
+    const secureResource = resourceURI.replace("http:", "https:")
     try {
-        const response = await axios.get(secureResource,{ params: { ts: timestamp, apikey: publicKey, hash: hash } })
+        const response = await axios.get(secureResource, axiosConfig)
         return response.data.data.results[0];
     } catch (error) {
         console.error('Erro ao obter event: ', error);
@@ -20,8 +14,7 @@ export async function getEventByURI(resourceURI: string) {
 
 export async function getEventById(eventId: number) {
     try {
-        const response = await api.get(`/events/${eventId}`,
-            { params: { ts: timestamp, apikey: publicKey, hash: hash } });
+        const response = await api.get(`/events/${eventId}`);
         return response.data.data.results[0];
     } catch (error) {
         console.error('Erro ao obter event: ', error);

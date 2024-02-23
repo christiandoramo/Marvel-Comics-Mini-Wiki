@@ -1,16 +1,11 @@
 import axios from "axios";
-import md5 from 'md5'; 
-import api from "./api";
+import api, { axiosConfig } from "./api";
 
-const publicKey = process.env.NEXT_PUBLIC_PUBLIC_KEY;
-const privateKey = process.env.NEXT_PUBLIC_PRIVATE_KEY;
-const timestamp = new Date().getTime().toString();
-const hash = md5(timestamp + privateKey + publicKey);
 
 export async function getSerieByURI(resourceURI: string) {
-    const secureResource = resourceURI.replace("http:","https:")
+    const secureResource = resourceURI.replace("http:", "https:")
     try {
-        const response = await axios.get(secureResource,{ params: { ts: timestamp, apikey: publicKey, hash: hash } })
+        const response = await axios.get(secureResource, axiosConfig)
         return response.data.data.results[0];
     } catch (error) {
         console.error('Erro ao obter serie: ', error);
@@ -20,8 +15,7 @@ export async function getSerieByURI(resourceURI: string) {
 
 export async function getSerieById(serieId: number) {
     try {
-        const response = await api.get(`/series/${serieId}`,
-            { params: { ts: timestamp, apikey: publicKey, hash: hash } });
+        const response = await api.get(`/series/${serieId}`);
         return response.data.data.results[0];
     } catch (error) {
         console.error('Erro ao obter series: ', error);
