@@ -8,4 +8,20 @@ export interface SerieData {
         path: string,
         extension: string
     };
+    creators: {
+        available: number,
+        items: {
+            resourceURI: string,
+            name: string,
+            role: string
+        }[]
+    }
+    characters: {
+        available: number,
+        items: {
+            resourceURI: string,
+            name: string,
+            role: string
+        }[]
+    }
 }

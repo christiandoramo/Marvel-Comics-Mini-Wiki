@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 
 export interface CharacterData {
+    [key: string]: any;
     id: number;
     name: string;
     description: string;
@@ -25,6 +26,22 @@ export interface CharacterData {
             name: string;
         }[]
     };
+    events: {
+        available: number;
+        collectionURI: string;
+        items: {
+            resourceURI: string;
+            name: string;
+        }[]
+    };
+    stories: {
+        available: number;
+        collectionURI: string;
+        items: {
+            resourceURI: string;
+            name: string;
+        }[]
+    };
 }
 
 export interface CharacterContextData {
@@ -37,4 +54,5 @@ export interface CharacterContextData {
     characters: CharacterData[];
     setCharacters: Dispatch<SetStateAction<CharacterData[]>>;
     filterCharacters: () => void;
+    setFilteredCharacters: Dispatch<SetStateAction<CharacterData[]>>;
 }

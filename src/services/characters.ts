@@ -29,22 +29,28 @@ export async function getCharacterById(characterId: number) {
     }
 }
 
-export async function getCharactersByName(nameStartsWith: string) {
-    try {
-        const response = await api.get('/characters',
-            { params: { nameStartsWith, ts: timestamp, apikey: publicKey, hash: hash } });
-        return response.data.data.results;
-    } catch (error) {
-        console.error('Erro ao obter personagens: ', error);
-        return null;
-    }
-}
+// export async function getCharactersByName(nameStartsWith: string) {
+//     try {
+//         const response = await api.get('/characters',
+//             { params: { nameStartsWith, ts: timestamp, apikey: publicKey, hash: hash } });
+//         return response.data.data.results;
+//     } catch (error) {
+//         console.error('Erro ao obter personagens: ', error);
+//         return null;
+//     }
+// }
 
 
 
 export async function getCharactersAdvanced({ nameStartsWith, offset, limit }: { nameStartsWith?: string, offset?: number, limit?: number }) {
     try {
-        if (nameStartsWith) {
+        if (nameStartsWith && offset && limit) {
+            const params = { nameStartsWith: nameStartsWith, ts: timestamp, apikey: publicKey, hash: hash, offset, limit }
+            const response = await api.get(`/characters`,
+                { params });
+            return response.data.data.results;
+        }
+        if (nameStartsWith && limit) {
             const params = { nameStartsWith: nameStartsWith, ts: timestamp, apikey: publicKey, hash: hash, offset, limit }
             const response = await api.get(`/characters`,
                 { params });

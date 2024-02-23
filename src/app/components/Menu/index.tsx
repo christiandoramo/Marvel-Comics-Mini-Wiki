@@ -23,7 +23,7 @@ export function Menu() {
          h-20 flex 
          justify-center items-center
          px-8 py-5
-          bg-black z-10">
+          bg-red-700 z-10">
             <HomeButton />
                 <SearchBar
                     onClick={async event => {

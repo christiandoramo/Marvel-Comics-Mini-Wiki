@@ -1,4 +1,6 @@
-export const CharacterPlaceholder = {
+import { CharacterData } from "../interfaces/characters"
+
+export const CharacterPlaceholder:CharacterData = {
     id: 0,
     name: "",
     description: '',
@@ -16,6 +18,22 @@ export const CharacterPlaceholder = {
         }]
     },
     series: {
+        available: 0,
+        collectionURI: "",
+        items: [{
+            resourceURI: "",
+            name: "",
+        }]
+    },
+    events: {
+        available: 0,
+        collectionURI: "",
+        items: [{
+            resourceURI: "",
+            name: "",
+        }]
+    },
+    stories: {
         available: 0,
         collectionURI: "",
         items: [{

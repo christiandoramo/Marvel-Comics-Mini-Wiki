@@ -13,41 +13,16 @@ export async function getSerieByURI(resourceURI: string) {
         const response = await axios.get(secureResource,{ params: { ts: timestamp, apikey: publicKey, hash: hash } })
         return response.data.data.results[0];
     } catch (error) {
-        console.error('Erro ao obter comic: ', error);
+        console.error('Erro ao obter serie: ', error);
         return null;
     }
 }
 
-export async function getCharacterById(comicId: number) {
+export async function getSerieById(serieId: number) {
     try {
-        const response = await api.get(`/series/${comicId}`,
+        const response = await api.get(`/series/${serieId}`,
             { params: { ts: timestamp, apikey: publicKey, hash: hash } });
         return response.data.data.results[0];
-    } catch (error) {
-        console.error('Erro ao obter series: ', error);
-        return null;
-    }
-}
-
-export async function getSeriesByName(nameStartsWith: string) {
-    try {
-        const response = await api.get('/series',
-            { params: { nameStartsWith, ts: timestamp, apikey: publicKey, hash: hash } });
-        return response.data.data.results;
-    } catch (error) {
-        console.error('Erro ao obter series: ', error);
-        return null;
-    }
-}
-
-
-
-export async function getSeriesAdvanced({ offset, limit }: { offset?: number, limit?: number }) {
-    try {
-        const params = { ts: timestamp, apikey: publicKey, hash: hash, offset, limit }
-        const response = await api.get(`/series`,
-            { params });
-        return response.data.data.results;
     } catch (error) {
         console.error('Erro ao obter series: ', error);
         return null;

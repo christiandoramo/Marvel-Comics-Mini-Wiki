@@ -16,7 +16,7 @@ export const CharacterCard: React.FC<SelectableCharacterData> = ({ name, thumbna
     return (
         <Box
             sx={{
-                backgroundColor: 'black',
+                backgroundColor: 'rgba(0, 0, 0, 0.44)',
                 boxShadow: '0 0 -20px rgba(0, 0, 0, 0.8)',
                 width: 200,
                 height: 300,
@@ -28,9 +28,10 @@ export const CharacterCard: React.FC<SelectableCharacterData> = ({ name, thumbna
                 borderRadius: '10px',
                 overflow: 'hidden',
                 ...(selectable && {
+                    backgroundColor:'black',
                     '&:hover': {
                         transition: 'transform 0.3s',
-                        boxShadow: '0 0 20px rgba(0, 0, 0, 1)',
+                        boxShadow: '0 0 20px rgba(0, 0, 0, 0.88)',
                         transform: 'scale(1.1)',
                     },
                 })
@@ -47,8 +48,8 @@ export const CharacterCard: React.FC<SelectableCharacterData> = ({ name, thumbna
                 onLoad={() => setImageLoaded(true)}
             />
             <h2
-                className='mt-2 text-center font-bold text-white flex-shrink-0 z-0 bg-black'
-                style={{ position: 'absolute', bottom: 0, backgroundColor: 'rgba(0, 0, 0, 0.7)' }}>
+                className='mt-2 text-center font-bold text-white flex-shrink-0 z-0'
+                style={{ position: 'absolute', bottom: 0, backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
                 {name}
             </h2>
         </Box>

@@ -7,24 +7,24 @@ const privateKey = process.env.NEXT_PUBLIC_PRIVATE_KEY;
 const timestamp = new Date().getTime().toString();
 const hash = md5(timestamp + privateKey + publicKey);
 
-export async function getComicByURI(resourceURI: string) {
-    const secureResource = resourceURI.replace("http:", "https:")
+export async function getEventByURI(resourceURI: string) {
+    const secureResource = resourceURI.replace("http:","https:")
     try {
-        const response = await axios.get(secureResource, { params: { ts: timestamp, apikey: publicKey, hash: hash } })
+        const response = await axios.get(secureResource,{ params: { ts: timestamp, apikey: publicKey, hash: hash } })
         return response.data.data.results[0];
     } catch (error) {
-        console.error('Erro ao obter comic: ', error);
+        console.error('Erro ao obter event: ', error);
         return null;
     }
 }
 
-export async function getCharacterById(comicId: number) {
+export async function getEventById(eventId: number) {
     try {
-        const response = await api.get(`/comics/${comicId}`,
+        const response = await api.get(`/events/${eventId}`,
             { params: { ts: timestamp, apikey: publicKey, hash: hash } });
         return response.data.data.results[0];
     } catch (error) {
-        console.error('Erro ao obter comics: ', error);
+        console.error('Erro ao obter event: ', error);
         return null;
     }
 }

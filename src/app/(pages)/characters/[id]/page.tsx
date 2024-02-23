@@ -3,22 +3,18 @@ import { Menu } from '@/app/components/Menu';
 import { CharacterData } from '@/app/interfaces/characters';
 import { ComicData } from '@/app/interfaces/comics';
 import { getCharacterById } from '@/services/characters';
-import { getComicByURI } from '@/services/comics';
-import { getSerieByURI } from '@/services/series';
+import { getGenericByURI } from '@/services/generics';
 import { useEffect, useState } from 'react';
-import { SerieData } from '@/app/interfaces/series';
 import Image from 'next/image';
 import { ModalCard } from '@/app/components/ModalCard';
 import { Grid } from '@mui/material';
-import { HighlightedText } from '@/app/components/HighlightedText';
+import { CharacterDetails } from '@/app/components/CharacterDetails';
 
 export default function Character(props: any) {
     const { id } = props.params
     const [character, setCharacter] = useState<CharacterData | null>(null)
-    const [comic, setComic] = useState<ComicData | null>(null)
-    const [serie, setSerie] = useState<SerieData | null>(null)
-    const [openComic, setOpenComic] = useState(false);
-    const [openSerie, setOpenSerie] = useState(false);
+    const [data, setData] = useState<ComicData | null>(null)
+    const [openData, setOpenData] = useState(false);
 
     const style = {
         position: 'absolute',
@@ -32,44 +28,24 @@ export default function Character(props: any) {
         p: 4,
     };
 
-    const handleOpenCloseComic = () => {
-        setOpenComic((prev) => !prev);
-        if (openComic === true) setComic(null)
+    const handleOpenCloseData = () => {
+        setOpenData((prev) => !prev);
+        if (openData === true) setData(null)
     };
 
-    const handleOpenCloseSerie = () => {
-        setOpenSerie((prev) => !prev);
-        if (openSerie === true) setSerie(null)
-    };
-
-    function goToComicDetails() {
-        comic?.urls.forEach((url) => {
-            if (url.type === "detail") {
-                window.open(url.url, '_blank')
-            }
-        })
-    }
-    function goToSerieDetails() {
-        serie?.urls.forEach((url) => {
+    function goToDataDetails() {
+        data?.urls.forEach((url) => {
             if (url.type === "detail") {
                 window.open(url.url, '_blank')
             }
         })
     }
 
-    async function handleShowComic(resourceURI: string) {
-        const comicFound = await getComicByURI(resourceURI)
-        if (comicFound) {
-            setComic(comicFound)
-            setOpenComic(true);
-        }
-    }
-
-    async function handleShowSerie(resourceURI: string) {
-        const serieFound = await getSerieByURI(resourceURI)
-        if (serieFound) {
-            setSerie(serieFound)
-            setOpenSerie(true);
+    async function handleShowData(resourceURI: string) {
+        const dataFound = await getGenericByURI(resourceURI)
+        if (dataFound) {
+            setData(dataFound)
+            setOpenData(true);
         }
     }
 
@@ -84,29 +60,24 @@ export default function Character(props: any) {
     }, [id])
 
     return (
-        <>
+        <div className='bg-home-color'>
             <Menu />
-            {comic && <ModalCard {...{
-                open: openComic, style, data: comic,
-                onClick: goToComicDetails, onClose: handleOpenCloseComic
-            }} />}
-
-            {serie && <ModalCard {...{
-                open: openSerie, style, data: serie,
-                onClick: goToSerieDetails, onClose: handleOpenCloseSerie
+            {data && <ModalCard {...{
+                open: openData, style, data,
+                onClick: goToDataDetails, onClose: handleOpenCloseData
             }} />}
             <div style={{ padding: '20px', color: 'black' }}>
                 {character &&
                     <Grid container spacing={2}>
                         <Grid item xs={6}>
-                            <div className='bg-black h-full w-full'>
+                            <div className='bg-gray-100 h-full flex w-full justify-center items-center'>
                                 <Image
                                     src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
                                     alt={character.name}
-                                    style={{ objectFit: 'contain'}}
+                                    style={{ objectFit: 'contain' }}
                                     width={1000}
                                     height={1000}
-                                    className='responsive shadow-lg border-4 border-yellow-300'
+                                    className='responsive shadow-lg border-4 border-red-500'
                                 />
                             </div>
 
@@ -114,34 +85,14 @@ export default function Character(props: any) {
                         <Grid item xs={6} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                             <h1 className='text-[32px] text-center mb-16'>{character.name}</h1>
                             <p>{character.description ? character.description : ''}</p>
-                            <div className='flex flex-col items-center mb-16'>
-                                <HighlightedText text={`Comics: ${character.comics.available}`} />
-                                <p className='text-black  px-4 mt-4'>
-                                    {(character.comics.items.map((item, index) => (
-                                        <span key={index}   className='text-black'>
-                                            <span className='cursor-pointer
-                                            hover:text-yellow-500' onClick={() => handleShowComic(item.resourceURI)}>{item.name}
-                                            </span>{index !== character.comics.items.length - 1 ? `, ` : `.`}
-                                        </span>
-                                    )))}
-                                </p>
-                            </div>
-                            <div className='flex flex-col items-center'>
-                                <HighlightedText text={`Series: ${character.series.available}`} />
-                                <p className='text-black px-4 mt-4'>
-                                    {(character.series.items.map((item, index) => (
-                                        <span key={index}  className=' text-black'>
-                                            <span className='cursor-pointer
-                                             hover:text-yellow-500' onClick={() => handleShowSerie(item.resourceURI)}>{item.name}
-                                            </span>{index !== character.series.items.length - 1 ? `, ` : `.`}
-                                        </span>
-                                    )))}
-                                </p>
-                            </div>
+                            <CharacterDetails {...{ dataType: 'comics', character, handleShowData: handleShowData }}/>
+                            <CharacterDetails {...{ dataType: 'series', character, handleShowData: handleShowData }}/>
+                            <CharacterDetails {...{ dataType: 'events', character, handleShowData: handleShowData }}/>
+                            <CharacterDetails {...{ dataType: 'stories', character, handleShowData: handleShowData }}/>
                         </Grid>
                     </Grid>
                 }
             </div>
-        </>
+        </div>
     )
 }

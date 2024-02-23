@@ -10,14 +10,17 @@ import { useTheme } from '@mui/material/styles';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import MobileStepper from '@mui/material/MobileStepper';
+import { CharacterPlaceholder } from '@/app/utils/placeholders';
+import { CharacterData } from '@/app/interfaces/characters';
 
 
 export default function Home() {
     const router = useRouter()
     const { ...rest } = useCharacters()
     const [actualOffset, setActualOffset] = useState<number>(30)// começa num offset a mais
-    const limit = 30
+    const limit = 100
     const theme = useTheme();
+    const placeholders: CharacterData[] = Array(100).fill(CharacterPlaceholder);
 
 
     async function handleGoToCharacter(id: number) {
@@ -25,6 +28,7 @@ export default function Home() {
     }
 
     async function handleReloadImages() {
+        rest.setFilteredCharacters(placeholders)
         const chars = await getCharactersAdvanced({ offset: actualOffset, limit })
         if (chars) {
             rest.setCharacters(chars)
@@ -51,7 +55,9 @@ export default function Home() {
     return (
         <div>
             <Menu />
-            <div className='flex flex-col items-center mt-[30px] mb-[150px] px-16 '>
+            <div className='
+            bg-home-color
+            flex flex-col items-center mt-[30px] mb-[150px] px-16 '>
                 <MobileStepper
                     steps={1}
                     position="static"
@@ -98,7 +104,7 @@ export default function Home() {
 
                     {rest.filteredCharacters.length === 0 ? (
                         <p className='text-black opacity-40 text-center w-full'>
-                            Ainda não foi achado nenhum personagem...</p>
+                            Nenhum personagem foi carregado...</p>
                     ) : (
                         rest.filteredCharacters.map((char, index) => (
                             <div

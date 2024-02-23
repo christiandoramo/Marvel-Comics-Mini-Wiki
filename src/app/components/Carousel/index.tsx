@@ -22,7 +22,7 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 const Carousel: React.FC = () => {
   const [characters, setCharacters] = React.useState<CharacterData[]>([])
   const [actualOffset, setActualOffset] = React.useState<number>(Math.floor(Math.random() * 1000))
-  const limit = 30
+  const limit = 100
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const router = useRouter()
@@ -58,7 +58,7 @@ const Carousel: React.FC = () => {
   }, [actualOffset]);
 
   React.useEffect(() => {
-    if (activeStep === limit - 1) {
+    if (activeStep === characters.length - 1) {
       setActualOffset((prev) => prev + limit);
       handleReloadImages()
     }
@@ -127,7 +127,7 @@ const Carousel: React.FC = () => {
             />}
           </AutoPlaySwipeableViews>
           <MobileStepper
-            steps={limit}
+            steps={characters.length}
             position="static"
             activeStep={activeStep}
             sx={{
@@ -145,7 +145,7 @@ const Carousel: React.FC = () => {
               <Button
                 size="small"
                 onClick={handleNext}
-                disabled={activeStep === limit - 1}
+                disabled={activeStep === characters.length - 1}
                 style={{ color: '#FFD200' }}
               >
                 {theme.direction === 'rtl' ? (
