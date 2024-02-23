@@ -4,6 +4,8 @@
 
 :o: [Contribuidores](#contribuidores)
 
+:o: [Tecnologias](#tecnologias)
+
 :o: [Protótipo Figma](#protótipo-figma)
 
 :o: [Requisitos de Projeto](#requisitos-do-projeto)
@@ -17,6 +19,12 @@
 | [<img src="https://avatars.githubusercontent.com/u/116025325?v=4" width=115>](https://github.com/christiandoramo) |
 | ----------------------------------------------------------------------------------------------------------------- |
 | [Christian Oliveira](https://github.com/christiandoramo)                                                          |
+
+<br>
+
+## Tecnologias
+
+ ![Next.js](https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white) ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
 <br>
 
@@ -91,8 +99,8 @@
 
 ### EXTRA-PLUS:
 
-- Novas formas de busca
-- Novas formas de Navegação
+- ~~Novas formas de busca~~
+- ~~Novas formas de Navegação~~
 - Recursos de acessibilidade (leitura de tela, tema noturno)
 - Versão mobile carrossel
 - Versão mobile page de Home
@@ -130,6 +138,8 @@ Para rodar o projeto - pnpm run dev
 ### Sumário
 
 :o: [Contribuidores](#contribuidores)
+
+:o: [Tecnologias](#tecnologias)
 
 :o: [Protótipo Figma](#protótipo-figma)
 

@@ -1,4 +1,4 @@
-export interface ComicData {
+export interface StorieData {
     title: string;
     description: string;
     textObjects: { type: string, language: string, text: string }[] //pegar o primeiro pelo menos se description for ""
@@ -10,15 +10,15 @@ export interface ComicData {
     };
     creators: {
         available: number,
-        items:{
+        items: {
             resourceURI: string,
             name: string,
             role: string
         }[]
     }
-    characters:{
+    characters: {
         available: number,
-        items:{
+        items: {
             resourceURI: string,
             name: string,
             role: string

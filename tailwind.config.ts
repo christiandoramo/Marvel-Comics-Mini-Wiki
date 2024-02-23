@@ -23,6 +23,7 @@ const config: Config = {
         'enter-button': '#F5167E',
         'select-background': 'white',
         'select-text': 'black',
+        'bg-app-color': 'cyan',
       },
     },
   },

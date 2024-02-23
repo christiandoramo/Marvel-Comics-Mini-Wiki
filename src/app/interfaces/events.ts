@@ -1,4 +1,4 @@
-export interface ComicData {
+export interface SerieData {
     title: string;
     description: string;
     textObjects: { type: string, language: string, text: string }[] //pegar o primeiro pelo menos se description for ""
