@@ -17,10 +17,10 @@ import { CharacterData } from '@/app/interfaces/characters';
 export default function Home() {
     const router = useRouter()
     const { ...rest } = useCharacters()
-    const [actualOffset, setActualOffset] = useState<number>(30)// começa num offset a mais
-    const limit = 100
+    const [actualOffset, setActualOffset] = useState<number>(0)// começa num offset a mais
+    const limit = 30
     const theme = useTheme();
-    const placeholders: CharacterData[] = Array(100).fill(CharacterPlaceholder);
+    const placeholders: CharacterData[] = Array(30).fill(CharacterPlaceholder);
 
 
     async function handleGoToCharacter(id: number) {
@@ -40,7 +40,7 @@ export default function Home() {
     };
 
     const handleBack = () => {
-        setActualOffset((prev) => prev - limit);
+        setActualOffset((prev) => prev > 0 ? prev - limit : prev);
     };
 
     useEffect(() => {
